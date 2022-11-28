@@ -21,7 +21,7 @@
 
         public function restrictTo($role){
             
-            if(!Session::getUser() || !Session::getUser()->hasRole($role)){
+            if(!Session::getVisiteur() || !Session::getVisiteur()->hasRole($role)){
                 $this->redirectTo("security", "login");
             }
             return;
