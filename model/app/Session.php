@@ -29,16 +29,16 @@
         /**
         *   met un user dans la session (pour le maintenir connecté)
         */
-        public static function setUser($user){
-            $_SESSION["user"] = $user;
+        public static function setVisiteur($visiteur){
+            $_SESSION["visiteur"] = $visiteur;
         }
 
-        public static function getUser(){
-            return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
+        public static function getVisiteur(){
+            return (isset($_SESSION['visiteur'])) ? $_SESSION['visiteur'] : false;
         }
 
         public static function isAdmin(){
-            if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
+            if(self::getVisiteur() && self::getVisiteur()->hasRole("ROLE_ADMIN")){
                 return true;
             }
             return false;

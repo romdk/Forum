@@ -23,7 +23,7 @@
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=home&action=visiteurs">Voir la liste des gens</a>
                           
                             <?php
                         }
@@ -32,9 +32,9 @@
                     <div id="nav-right">
                     <?php
                         
-                        if(App\Session::getUser()){
+                        if(App\Session::getVisiteur()){
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getVisiteur()?></a>
                             <a href="/security/logout.html">Déconnexion</a>
                             <?php
                         }
@@ -42,7 +42,7 @@
                             ?>
                             <a href="./view/security/login.php">Connexion</a>
                             <a href="/security/register.html">Inscription</a>
-                            <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
+                            <a href="index.php?ctrl=forum&action=listSujets">la liste des topics</a>
                         <?php
                         }
                    

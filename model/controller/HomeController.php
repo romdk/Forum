@@ -5,9 +5,10 @@
     use App\Session;
     use App\AbstractController;
     use App\ControllerInterface;
-    use Model\Managers\UserManager;
-    use Model\Managers\TopicManager;
-    use Model\Managers\PostManager;
+    use Model\Managers\VisiteurManager;
+    use Model\Managers\SujetManager;
+    use Model\Managers\MessageManager;
+    use Model\Managers\CategorieManager;
     
     class HomeController extends AbstractController implements ControllerInterface{
 
@@ -21,16 +22,16 @@
             
         
    
-        public function users(){
+        public function visiteurs(){
             $this->restrictTo("ROLE_USER");
 
-            $manager = new UserManager();
-            $users = $manager->findAll(['registerdate', 'DESC']);
+            $manager = new VisiteurManager();
+            $visiteurs = $manager->findAll(['dateInscription', 'DESC']);
 
             return [
-                "view" => VIEW_DIR."security/users.php",
+                "view" => VIEW_DIR."security/visiteurs.php",
                 "data" => [
-                    "users" => $users
+                    "visiteurs" => $visiteurs
                 ]
             ];
         }
