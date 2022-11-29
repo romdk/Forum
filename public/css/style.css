@@ -101,8 +101,17 @@ nav .titre{
 
 #nav-left{
     width: 50%;
-
 }
+
+#nav-left .titre{
+    transition: .2s;
+}
+
+#nav-left .titre:hover{
+    color: #1A1C40;
+}
+
+
 
 #nav-right{
     display: flex;
