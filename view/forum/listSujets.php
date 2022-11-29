@@ -10,8 +10,13 @@ $sujets = $result["data"]['sujets'];
 foreach($sujets as $sujet){
 
     ?>
-    <p><a href="index.php?ctrl=forum&action=listMessages?id=<?= $sujet->getId() ?>"><?=$sujet->getTitre()?></a></p>
+    <a href="index.php?ctrl=forum&action=listMessages">
+        <p><?=$sujet->getTitre()?></p>
+        <p><?=$sujet->getVisiteur()->getPseudonyme()?></p>
+        <p>dernier message</p>
+    </a>
     <?php
+    // ?id=<?= $sujet->getId()
 }
 
 
