@@ -3,21 +3,28 @@
 $sujets = $result["data"]['sujets'];
     
 ?>
+<div class="listeSujets">
 
-<h1>liste sujets</h1>
-
-<?php
-foreach($sujets as $sujet){
-
-    ?>
-    <a href="index.php?ctrl=forum&action=listMessages">
-        <p><?=$sujet->getTitre()?></p>
-        <p><?=$sujet->getVisiteur()->getPseudonyme()?></p>
-        <p>dernier message</p>
-    </a>
+        <p class="nouveauSujet">Créer un nouveau sujet<input type="text" placeholder="Saisir un titre"><i class="fa-solid fa-plus"></i></p>
     <?php
-    // ?id=<?= $sujet->getId()
-}
+    foreach($sujets as $sujet){
+
+        ?>
+            <a href="index.php?ctrl=forum&action=listMessages">
+                <div class="sujet">
+                    <p class="titre"><?=$sujet->getTitre()?></p>
+                    <p class="par">par</p>
+                    <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
+                    <p class="message2">dernier message</p>
+                </div>
+            </a>
+        <?php
+    }
+    ?>
+</div>
+
+
+
 
 
   
