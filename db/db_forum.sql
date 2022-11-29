@@ -22,14 +22,15 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
   `nomCategorie` varchar(50) NOT NULL,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_roman.categorie : ~2 rows (environ)
+-- Listage des données de la table forum_roman.categorie : ~3 rows (environ)
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
 INSERT INTO `categorie` (`id_categorie`, `nomCategorie`) VALUES
-	(1, 'categorie 1'),
-	(2, 'categorie 3'),
-	(3, 'categorie 4');
+	(1, 'Infos'),
+	(2, 'Aide'),
+	(3, 'Discussion'),
+	(4, 'Annonces');
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 
 -- Listage de la structure de la table forum_roman. message
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `sujet_id` int(11) NOT NULL,
   `texte` text NOT NULL,
   `dateCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nbVote` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_message`),
   KEY `FK_message_visiteur` (`visiteur_id`),
   KEY `FK_message_sujet` (`sujet_id`),
@@ -46,14 +48,14 @@ CREATE TABLE IF NOT EXISTS `message` (
   CONSTRAINT `FK_message_visiteur` FOREIGN KEY (`visiteur_id`) REFERENCES `visiteur` (`id_visiteur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_roman.message : ~4 rows (environ)
+-- Listage des données de la table forum_roman.message : ~5 rows (environ)
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` (`id_message`, `visiteur_id`, `sujet_id`, `texte`, `dateCreation`) VALUES
-	(1, 1, 1, 'message 1', '2022-11-29 10:28:45'),
-	(2, 2, 1, 'message 2', '2022-11-29 10:28:54'),
-	(3, 3, 1, 'message 3', '2022-11-29 10:29:05'),
-	(4, 2, 2, 'message 4', '2022-11-29 10:29:13'),
-	(5, 4, 2, 'message 5', '2022-11-29 10:29:24');
+INSERT INTO `message` (`id_message`, `visiteur_id`, `sujet_id`, `texte`, `dateCreation`, `nbVote`) VALUES
+	(1, 1, 1, 'Lorem ipsum dolor sit amet. Aut accusamus dolor sed totam minima ex adipisci autem qui inventore aliquid ab nobis velit aut corporis laborum est dolor Quis. Quo Quis soluta rem deleniti consequuntur aut magnam placeat est amet internos et temporibus iusto 33 odit illum.\r\n\r\nUt nesciunt galisum quo harum voluptatibus quo dolores voluptatum ut tempore quia est facere totam ut consequatur delectus aut incidunt doloribus. Sed delectus odit hic accusamus iste et omnis quia ut officiis necessitatibus. Nam perferendis numquam est iste distinctio eum reiciendis nulla aut atque porro aut reprehenderit consequatur rem iusto culpa.', '2022-11-29 08:28:45', 780),
+	(2, 2, 1, 'Et quae aspernatur eum optio dolorem est velit quaerat qui illo soluta et facere perspiciatis a Quis accusamus vel mollitia enim. Ea aliquid tempore qui harum internos et vero quia et nesciunt quod.', '2022-11-29 08:28:54', 44),
+	(3, 3, 1, 'Ut nesciunt galisum quo harum voluptatibus quo dolores voluptatum ut tempore quia est facere totam ut consequatur delectus aut incidunt doloribus. Sed delectus odit hic accusamus iste et omnis quia ut officiis necessitatibus. Nam perferendis numquam est iste distinctio eum reiciendis nulla aut atque porro aut reprehenderit consequatur rem iusto culpa.\r\n\r\nEt dicta temporibus qui temporibus voluptas qui exercitationem molestiae sit quibusdam omnis ut dolorum dolores. Hic voluptas facere et internos quod qui debitis amet et repudiandae voluptatem! Non facilis minima nam aspernatur fugit aut possimus quaerat aut quia aliquid?\r\n\r\nIn unde quaerat et necessitatibus voluptatem eos officia tenetur.', '2022-11-29 08:29:05', -3),
+	(4, 2, 2, 'Ut nesciunt galisum quo harum voluptatibus quo dolores voluptatum ut tempore quia est facere totam ut consequatur delectus aut incidunt doloribus. Sed delectus odit hic accusamus iste et omnis quia ut officiis necessitatibus. Nam perferendis numquam est iste distinctio eum reiciendis nulla aut atque porro aut reprehenderit consequatur rem iusto culpa.\r\n\r\nEt dicta temporibus qui temporibus voluptas qui exercitationem molestiae sit quibusdam omnis ut dolorum dolores. Hic voluptas facere et internos quod qui debitis amet et repudiandae voluptatem! Non facilis minima nam aspernatur fugit aut possimus quaerat aut quia aliquid?\r\n\r\nIn unde quaerat et necessitatibus voluptatem eos officia tenetur.', '2022-11-29 08:29:13', 0),
+	(5, 4, 2, 'Lorem ipsum dolor sit amet. Aut accusamus dolor sed totam minima ex adipisci autem qui inventore aliquid ab nobis velit aut corporis laborum est dolor Quis. Quo Quis soluta rem deleniti consequuntur aut magnam placeat est amet internos et temporibus iusto 33 odit illum.\r\n\r\nUt nesciunt galisum quo harum voluptatibus quo dolores voluptatum ut tempore quia est facere totam ut consequatur delectus aut incidunt doloribus. Sed delectus odit hic accusamus iste et omnis quia ut officiis necessitatibus. Nam perferendis numquam est iste distinctio eum reiciendis nulla aut atque porro aut reprehenderit consequatur rem iusto culpa.', '2022-11-29 08:29:24', 0);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
 -- Listage de la structure de la table forum_roman. sujet
@@ -73,29 +75,32 @@ CREATE TABLE IF NOT EXISTS `sujet` (
 -- Listage des données de la table forum_roman.sujet : ~4 rows (environ)
 /*!40000 ALTER TABLE `sujet` DISABLE KEYS */;
 INSERT INTO `sujet` (`id_sujet`, `visiteur_id`, `categorie_id`, `titre`, `dateCreation`) VALUES
-	(1, 1, 1, 'sujet 1', '2022-11-29 10:27:56'),
-	(2, 1, 2, 'sujet 2', '2022-11-29 10:28:07'),
-	(3, 2, 1, 'sujet 3', '2022-11-29 10:28:15'),
-	(4, 3, 1, 'sujet 4', '2022-11-29 10:28:24'),
-	(5, 4, 2, 'sujet 5', '2022-11-29 10:28:34');
+	(1, 1, 1, 'Eum illo repellat et minima nihil sit repellendu', '2022-11-29 08:27:56'),
+	(2, 1, 2, 'Quis autem est odio fugiat.', '2022-11-29 08:28:07'),
+	(3, 2, 1, 'Quis et velit obcaecati.', '2022-11-29 08:28:15'),
+	(4, 3, 1, 'Et labore doloremque vel dignissimos consequatur', '2022-11-29 08:28:24'),
+	(5, 4, 2, 'Cum esse doloremque aut atque', '2022-11-29 08:28:34');
 /*!40000 ALTER TABLE `sujet` ENABLE KEYS */;
 
 -- Listage de la structure de la table forum_roman. visiteur
 CREATE TABLE IF NOT EXISTS `visiteur` (
   `id_visiteur` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(50) NOT NULL,
   `pseudonyme` varchar(16) NOT NULL,
   `motDePasse` varchar(255) NOT NULL,
   `dateInscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_visiteur`)
+  `role` varchar(50) NOT NULL DEFAULT 'User',
+  PRIMARY KEY (`id_visiteur`),
+  UNIQUE KEY `pseudonyme` (`mail`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table forum_roman.visiteur : ~4 rows (environ)
 /*!40000 ALTER TABLE `visiteur` DISABLE KEYS */;
-INSERT INTO `visiteur` (`id_visiteur`, `pseudonyme`, `motDePasse`, `dateInscription`) VALUES
-	(1, 'user 1', '1234', '2022-11-29 10:27:07'),
-	(2, 'user 2', '1234', '2022-11-29 10:27:14'),
-	(3, 'user 3', '1234', '2022-11-29 10:27:21'),
-	(4, 'user 4', '1234', '2022-11-29 10:27:28');
+INSERT INTO `visiteur` (`id_visiteur`, `mail`, `pseudonyme`, `motDePasse`, `dateInscription`, `role`) VALUES
+	(1, 'mail1@test.com', 'EpicFish', '1234', '2022-11-29 08:27:07', 'User'),
+	(2, 'mail2@test.com', 'PythonLord', '1234', '2022-11-29 08:27:14', 'User'),
+	(3, 'mail3@test.com', 'DiabèteWait', '1234', '2022-11-29 08:27:21', 'User'),
+	(4, 'mail4@test.com', 'XPickle', '1234', '2022-11-29 08:27:28', 'User');
 /*!40000 ALTER TABLE `visiteur` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
