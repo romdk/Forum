@@ -17,7 +17,7 @@
         public function findSujetsByCategorie($id) {
 
             $sql = "SELECT *
-                    FROM '.$this->tableName.'
+                    FROM $this->tableName
                     WHERE categorie_id = :id";
 
             return $this->getMultipleResults(
