@@ -29,7 +29,7 @@
         public function listSujets(){     
             
             $sujetManager = new SujetManager();
-            $sujets = $sujetManager->findSujetsByCategorie($id);
+            $sujets = $sujetManager->findSujetsByCategorie(1);
 
             return [
                 "view" => VIEW_DIR."forum/listSujets.php",
@@ -42,6 +42,14 @@
 
         public function listMessages(){
             $messageManager = new MessageManager();
+            $messages = $messageManager->findMessagesBySujet(1);
+
+            return [
+                "view" => VIEW_DIR."forum/listMessages.php",
+                "data" => [
+                    "messages" => $messages
+                ]
+            ];
 
         }
         

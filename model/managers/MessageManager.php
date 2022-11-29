@@ -17,7 +17,7 @@
         public function findMessagesBySujet($id) {
 
             $sql = "SELECT *
-                    FROM '.$this->tableName.'
+                    FROM $this->tableName
                     WHERE sujet_id = :id";
 
             return $this->getMultipleResults(

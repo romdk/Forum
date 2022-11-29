@@ -4,15 +4,22 @@ $messages = $result["data"]['messages'];
     
 ?>
 
-<h1>liste messages</h1>
+<div>
+    <p>Titre du sujet</p>
+    <p>auteur du sujet</p>
+    <p>date de creation du sujet</p>
+</div>
 
 <?php
 foreach($messages as $message){
 
     ?>
-    <p><?=$message->getSujet()?></p>
-    <p><?=$message->getVisiteur()?></p>
-    <p><?=$message->getTexte()?></p>
-    <p><?=$message->getDateCreation()?></p>
+    <div class="message2">
+        <p><?=$message->getVisiteur()->getPseudonyme()?></p>
+        <p><?=$message->getVisiteur()->getRole()?></p>
+        <p><?=$message->getDateCreation()?></p>
+        <p><?=$message->getTexte()?></p>
+        <button><i class="fa-regular fa-comment"></i><input class="hidden" type="text"></button>
+    </div>
     <?php
 }
