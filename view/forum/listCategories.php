@@ -10,6 +10,10 @@ $categories = $result["data"]['categories'];
 foreach($categories as $categorie){
 
     ?>
-    <p><a href="index.php?ctrl=forum&action=listSujets?id=<?= $categorie->getId() ?>"><?=$categorie->getNomCategorie()?></a></p>
+    <a href="index.php?ctrl=forum&action=listSujets">
+        <p><?=$categorie->getNomCategorie()?></p>
+        <p>dernier sujet</p>
+    </a>
     <?php
+    // ?id=<?= $categorie->getId() 
 }
