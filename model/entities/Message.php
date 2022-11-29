@@ -92,6 +92,23 @@
                 return $this;
         }
 
+        public function getNbVote()
+        {
+                return $this->nbVote;
+        }
+
+        /**
+         * Set the value of nbVote
+         *
+         * @return  self
+         */ 
+        public function setNbVote($nbVote)
+        {
+                $this->nbVote = $nbVote;
+
+                return $this;
+        }
+
         public function getDateCreation(){
                 $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s");
                 return $formattedDate;
