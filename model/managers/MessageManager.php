@@ -18,7 +18,8 @@
 
             $sql = "SELECT *
                     FROM $this->tableName
-                    WHERE sujet_id = :id";
+                    WHERE sujet_id = :id
+                    ORDER BY dateCreation DESC";
 
             return $this->getMultipleResults(
                 DAO::select($sql,['id' => $id]),
