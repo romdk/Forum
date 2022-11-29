@@ -29,7 +29,9 @@
                         }
                         ?>
                     </div>
-                    <div></div>
+                    <div class='searchbar' >
+                        <input type="text" id="searchBar" onkeyup="affSuggestions()"  placeholder="Rechercher un sujet"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
                     <div id="nav-right">
                     <?php
                         
