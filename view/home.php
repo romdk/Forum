@@ -7,3 +7,4 @@
     <span>&nbsp;-&nbsp;</span>
     <a href="/security/register.html">S'inscrire</a>
 </p>
+<p><a href="index.php?ctrl=forum&action=listCategories">Entrer</a></p>
