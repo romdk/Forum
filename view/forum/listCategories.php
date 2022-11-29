@@ -3,17 +3,19 @@
 $categories = $result["data"]['categories'];
     
 ?>
-
-<h1>liste catégories</h1>
-
-<?php
-foreach($categories as $categorie){
-
-    ?>
-    <a href="index.php?ctrl=forum&action=listSujets">
-        <p><?=$categorie->getNomCategorie()?></p>
-        <p>dernier sujet</p>
-    </a>
+<div class="listeCategories">
     <?php
-    // ?id=<?= $categorie->getId() 
-}
+    foreach($categories as $categorie){
+
+        ?>
+            <a href="index.php?ctrl=forum&action=listSujets">
+                <div class="categorie">
+                <p class="nomCategorie"><?=$categorie->getNomCategorie()?></p>
+                <p>dernier sujet</p>
+                </div>
+            </a>
+        <?php
+        // ?id=<?= $categorie->getId() 
+    }
+    ?>
+</div>
