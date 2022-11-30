@@ -41,7 +41,7 @@
         public function InsertSujet($id,$titre) {
             
             $sql = "INSERT INTO $this->tableName(visiteur_id,categorie_id,titre)
-                    VALUES '1',':id',':titre'
+                    VALUES ('1',':id',':titre')
                     ";   
                     
             return $this->getOneOrNullResult(

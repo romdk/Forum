@@ -48,7 +48,7 @@
             return [
                 "view" => VIEW_DIR."forum/listSujets.php",
                 "data" => [
-                    "sujets" => $sujetManager->add($id,$titre)
+                    "sujets" => $sujetManager->InsertSujet($id,$titre)
                 ]
             ];
             header("Location:index.php?ctrl=forum&action=listSujets&id=$id");
