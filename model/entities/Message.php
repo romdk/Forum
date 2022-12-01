@@ -8,7 +8,7 @@
         private $id;
         private $visiteur;
         private $sujet;
-        private $texte;
+        private $message;
         private $dateCreation;
 
         public function __construct($data){         
@@ -75,19 +75,19 @@
                 return $this;
         }
 
-        public function getTexte()
+        public function getMessage()
         {
-                return $this->texte;
+                return $this->message;
         }
 
         /**
-         * Set the value of texte
+         * Set the value of message
          *
          * @return  self
          */ 
-        public function setTexte($texte)
+        public function setMessage($message)
         {
-                $this->texte = $texte;
+                $this->message = $message;
 
                 return $this;
         }

@@ -18,7 +18,7 @@ $messages = $result["data"]['messages'];
                 <p class="pseudo"><?=$message->getVisiteur()->getPseudonyme()?></p>
                 <p class="role"><?=$message->getVisiteur()->getRole()?></p>
                 <p class="date"><?=$message->getDateCreation()?></p>
-                <p class="texte"><?=$message->getTexte()?></p>
+                <p class="texte"><?=$message->getMessage()?></p>
                 <div class="interactions">
                     <div class="repondre">
                         <button><i class="fa-regular fa-comment"></i> Répondre<input class="hidden" type="text"></button>
