@@ -39,23 +39,11 @@
             ];
 
         }
-
-        public function ajoutSujet(){
-            $ajoutSujet = new SujetManager();
-            $id=(isset($_GET["id"])) ? $_GET["id"] : null;
-            $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
-            $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
-
-            return [
-                "view" => VIEW_DIR."forum/listSujets.php",
-                "data" => [
-                    "sujets" => $ajoutSujet->InsertSujet($id,$titre,$message)
-                ]
-            ];
-            header("Location:index.php?ctrl=forum&action=listSujets&id=$id");
-            
-        }
-
+        
+        
+        
+        
+        
         public function listMessages(){
             
             $messageManager = new MessageManager();
@@ -66,12 +54,34 @@
                 "view" => VIEW_DIR."forum/listMessages.php",
                 "data" => [
                     "messages" => $messages
+                    ]
+                ];
+                
+            }
+
+        public function ajoutSujet(){
+            $ajoutSujet = new SujetManager();
+            $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
+            $message = filter_input(INPUT_POST,'1erMessage',FILTER_SANITIZE_SPECIAL_CHARS);
+
+            return [
+                "view" => VIEW_DIR."forum/listSujets.php",
+                "data" => [
+                    "sujets" => $ajoutSujet->InsertSujet($categorieId,$titre,$message)
                 ]
             ];
+            header("Location:index.php?ctrl=forum&action=listSujets&id=$id");            
+        }
+
+        public function ajoutMesage(){
+            $ajoutMessage = new MessageManager();
+            $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
         }
-        
-        
+            
+            
 
         
 

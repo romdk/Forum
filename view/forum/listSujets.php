@@ -7,7 +7,7 @@ $sujets = $result["data"]['sujets'];
 
         <form action='index.php?ctrl=forum&action=ajoutSujet&id=<?=$id?>' method='post' class="nouveauSujet">nouveau sujet
             <input type="text" name="titre" placeholder="Saisir un titre">
-            <input type="text" name="message" placeholder="Saisir un message">
+            <input type="text" name="1erMessage" placeholder="Saisir un message">
             <input type="submit" name="ajouterSujet" value="Ajouter"><i class="fa-solid fa-plus"></i>
         </form>
     <?php
