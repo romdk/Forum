@@ -5,10 +5,11 @@ $sujets = $result["data"]['sujets'];
 ?>
 <div class="listeSujets">
 
-        <form action='index.php?ctrl=forum&action=ajoutSujet&id=<?=$id?>' method='post' class="nouveauSujet">nouveau sujet
-            <input type="text" name="titre" placeholder="Saisir un titre">
-            <input type="text" name="1erMessage" placeholder="Saisir un message">
-            <input type="submit" name="ajouterSujet" value="Ajouter"><i class="fa-solid fa-plus"></i>
+        <form class="nouveauSujet" action='index.php?ctrl=forum&action=ajoutSujet&id=<?=$id?>' method='post'>nouveau sujet
+            <input id="champTitre" type="text" name="titre" placeholder="Saisir un titre">
+            <i id="boutonPlus" class="fa-solid fa-plus"></i>
+            <textarea id="champMessage" type="text" name="1erMessage" placeholder="Saisir un message"></textarea>
+            <input id="btnAjouter" type="submit" name="ajouterSujet" value="Créer sujet">
         </form>
     <?php
     foreach($sujets as $sujet){
