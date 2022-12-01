@@ -38,16 +38,17 @@
             );
         }
 
-        public function InsertSujet($id,$titre) {
+        public function InsertSujet($id,$titre,$message) {
             
-            $sql = "INSERT INTO $this->tableName(visiteur_id,categorie_id,titre)
-                    VALUES ('1',':id',':titre')
+            $sql1 = "INSERT INTO $this->tableName(visiteur_id,categorie_id,titre)
+                    VALUES ('1','$id','$titre')
                     ";   
+            
+            $sujet_id = $pdo->lastInsertId();        
+            $sql2 = "INSERT INTO message(visiteur_id,sujet_id,message)
+                     VALUES ('1','$sujet_id','$message')";
                     
-            return $this->getOneOrNullResult(
-                DAO::insert($sql,['id' => $id],['titre'=>$titre]),
-                $this->className
-            );           
+            return DAO::insert($sql1,$sql2);
                           
         }
     }

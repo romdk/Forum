@@ -41,17 +41,19 @@
         }
 
         public function ajoutSujet(){
-            $sujetManager = new SujetManager();
+            $ajoutSujet = new SujetManager();
             $id=(isset($_GET["id"])) ? $_GET["id"] : null;
             $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
+            $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
             return [
                 "view" => VIEW_DIR."forum/listSujets.php",
                 "data" => [
-                    "sujets" => $sujetManager->InsertSujet($id,$titre)
+                    "sujets" => $ajoutSujet->InsertSujet($id,$titre,$message)
                 ]
             ];
             header("Location:index.php?ctrl=forum&action=listSujets&id=$id");
+            
         }
 
         public function listMessages(){
