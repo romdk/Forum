@@ -38,11 +38,7 @@
                 ]
             ];
 
-        }
-        
-        
-        
-        
+        }          
         
         public function listMessages(){
             
@@ -61,24 +57,29 @@
 
         public function ajoutSujet(){
             $ajoutSujet = new SujetManager();
+            $ajoutMessage = new MessageManager();
             $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,'1erMessage',FILTER_SANITIZE_SPECIAL_CHARS);
 
+            $dataSujet = ['visiteur_id' => '1', 'categorie_id' => $categorieId, 'titre' => $titre];
+            $dataMessage = ['visiteur_id' => '1', 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
+            
             return [
-                "view" => VIEW_DIR."forum/listSujets.php",
-                "data" => [
-                    "sujets" => $ajoutSujet->InsertSujet($categorieId,$titre,$message)
-                ]
-            ];
-            header("Location:index.php?ctrl=forum&action=listSujets&id=$id");            
+                $ajoutMessage->add($dataMessage)
+            ]; 
         }
 
-        public function ajoutMesage(){
+        public function ajoutMessage(){
             $ajoutMessage = new MessageManager();
             $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
+            $data = ['visiteur_id' => '1', 'sujet_id' => $sujetId, 'message' => $message];
+
+            return [
+                $ajoutMessage->add($data)
+            ];
         }
             
             

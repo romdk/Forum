@@ -37,17 +37,4 @@
                 $this->className
             );
         }
-
-        public function InsertSujet($categorieId,$titre,$message) {
-            
-            $sql1 = "INSERT INTO $this->tableName(visiteur_id,categorie_id,titre)
-                    VALUES ('1','$categorieId','$titre')";   
-            
-            // $sujetId = $pdo->lastInsertId();        
-            // $sql2 = "INSERT INTO message(visiteur_id,sujet_id,message)
-                    //  VALUES ('1','$sujetId','$message')";
-                    
-            return DAO::insert($sql1);
-                          
-        }
     }

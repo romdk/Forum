@@ -38,11 +38,4 @@
                 $this->className
             );
         }
-
-        public function InsertMessage($visiteurId,$sujetId,$message) {
-            $sql = "INSERT INTO $this->tableName(visiteur_id,sujet_id,message)
-                    VALUES ('1','$sujetId','$message')";
-
-            return DAO::insert($sql1);
-        }
     }
