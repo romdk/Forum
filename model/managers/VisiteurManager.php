@@ -14,5 +14,21 @@
             parent::connect();
         }
 
+        public function checkMail(){
+            $sql = "SELECT * FROM $this->tableName WHERE mail = $mail";
+
+            if(mysqli_num_rows($sql)) {
+                $checkMail = 'exist';              
+            }
+        }
+
+        public function checkPseudo(){
+            $sql = "SELECT * FROM $this->tableName WHERE pseudonyme = $pseudonyme";
+
+            if(mysqli_num_rows($sql)) {
+                $checkPseudo = 'exist';              
+            }
+        }
+
 
     }
