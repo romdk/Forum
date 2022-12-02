@@ -6,9 +6,9 @@
     use App\AbstractController;
     use App\ControllerInterface;
     use Model\Managers\VisiteurManager;
-    use Model\Managers\SujetManager;
-    use Model\Managers\MessageManager;
-    use Model\Managers\CategorieManager;
+    // use Model\Managers\SujetManager;
+    // use Model\Managers\MessageManager;
+    // use Model\Managers\CategorieManager;
     
     class HomeController extends AbstractController implements ControllerInterface{
 
