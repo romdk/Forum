@@ -1,3 +1,5 @@
+<div><?php if(isset($_SESSION['message'])){ echo $_SESSION['message'];}?></div>
+
 <form class="formulaire" action='index.php?ctrl=security&action=connexion' method='post'>
     <p>Connexion</p>
     <input class="champPseudo" type="text" name="pseudonyme" placeholder="Saisir votre pseudonyme">
