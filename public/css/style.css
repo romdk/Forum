@@ -204,6 +204,7 @@ nav .titre{
     border: none;
     transition: .2s;
 }
+
 .nouveauSujet #btnAjouter:hover{
     cursor: pointer;
     background-color: #1A1C40;
@@ -299,12 +300,63 @@ nav .titre{
     margin-bottom: 20px;
 }
 
+.nouveauMessage{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    height: fit-content;
+    padding:  10px;
+    background-color: #494FBF; 
+    border-radius: 5px;
+}
+
+.nouveauMessage .champMessage{
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px ;
+    border-radius: 5px;
+    background-color: #4449A6;
+    border: none;
+    outline: none;
+    color: #f1f1f1;
+    resize: none;
+
+}
+
+.nouveauMessage .btnAjouter{
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #0F1359;
+    border-radius: 5px;
+    width: 20%;
+    vertical-align: middle;
+    line-height: 20px;
+    border: none;
+    transition: .2s;
+}
+
+.nouveauMessage .btnAjouter:hover{
+    cursor: pointer;
+    background-color: #1A1C40;
+
+}
+
+.nouveauMessage .champMessage::placeholder {
+    color: #f1f1f1;
+    font-weight: 200;
+ }
+
 .listeMessages{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    margin-top: 20px;
 }
 .message2{
     display: flex;
@@ -370,6 +422,10 @@ nav .titre{
 .repondre button:hover{
     background-color: #1A1C40;
     cursor: pointer;
+}
+
+.repondre input{
+    display: none;
 }
 
 .message2 .vote{
