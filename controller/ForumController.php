@@ -61,10 +61,11 @@
             $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,'1erMessage',FILTER_SANITIZE_SPECIAL_CHARS);
-
+            
             $dataSujet = ['visiteur_id' => '1', 'categorie_id' => $categorieId, 'titre' => $titre];
             $dataMessage = ['visiteur_id' => '1', 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
             
+            // header("Location:index.php?ctrl=forum&action=listMessages&id=");
             return [
                 $ajoutMessage->add($dataMessage)
             ]; 
@@ -76,6 +77,7 @@
             $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = ['visiteur_id' => '1', 'sujet_id' => $sujetId, 'message' => $message];
+            header("Location:index.php?ctrl=forum&action=listMessages&id=$sujetId");
 
             return [
                 $ajoutMessage->add($data)
