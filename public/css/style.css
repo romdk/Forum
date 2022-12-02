@@ -28,10 +28,13 @@ body::-webkit-scrollbar{
     position: relative;
     border-radius: 10px;
     width: 90vw;
+    min-height: 90vh;
+    height: fit-content;
     margin-top: 50px;
     margin-bottom: 50px;
     background-color: #4449a66b;
     padding-top: 100px;
+    padding-bottom: 200px;
 }
 
 a {
@@ -120,6 +123,85 @@ nav .titre{
     width: 50%;
     text-transform: uppercase;
     font-weight: 300;
+}
+
+
+/* -----------------------------------INSCRIPTION------------------------------------ */
+
+.formulaire{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 300px;
+    height: fit-content;
+    margin-top: 80px;
+    padding: 20px;
+    gap: 20px;
+    background-color: #494FBF;
+    border-radius: 5px;
+    overflow: hidden;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.formulaire p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #0F1359;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    height: 50px;
+    line-height: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.formulaire input{
+    width: 100%;
+    height: 35px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f1f1f1;
+    outline: none;
+    color: #1d1d1d;
+    /* margin: 10px 30px; */
+}
+
+.formulaire input:nth-child(2){
+    margin-top: 50px;
+}
+
+.formulaire .btnInscription{
+    color: #f1f1f1;
+    background-color: #0F1359;
+    width: 100px;
+    line-height: 10px;
+    transition: .2s;
+}
+
+.formulaire .btnConnexion{
+    color: #f1f1f1;
+    background-color: #0F1359;
+    width: 100px;
+    line-height: 10px;
+    transition: .2s;
+}
+
+.formulaire .btnInscription:hover, .btnConnexion:hover{
+    cursor: pointer;
+    background-color: #181e8a;
+}
+
+.formulaire a{
+    transition: .2s;    
+}
+
+.formulaire a:hover{
+    color: #181e8a;
 }
 
 /* -----------------------------------CATEGORIES------------------------------------ */
@@ -462,11 +544,13 @@ nav .titre{
 
 
 footer{
+    position: absolute;
+    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     background-color: #1d1d1d;
 }
