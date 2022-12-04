@@ -13,6 +13,7 @@
     class HomeController extends AbstractController implements ControllerInterface{
 
         public function index(){
+            unset($_SESSION["message"]);
             
            
                 return [
