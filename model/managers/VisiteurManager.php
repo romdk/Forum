@@ -14,23 +14,13 @@
             parent::connect();
         }
 
-        public function checkMail(){
-            $mail = filter_input(INPUT_POST,'mail',FILTER_VALIDATE_EMAIL);
-            $sql = "SELECT * FROM $this->tableName WHERE mail = $mail";
-
-            if(mysqli_num_rows($sql)) {
-                $checkMail = 'exist';              
+        function checkVisiteur($pseudonyme, $mail) {
+            $sql = "SELECT * FROM $this->$tableName WHERE pseudonyme='$pseudonyme' OR mail='$mail'";    
+            $result = mysqli_query(DAO::$bdd, $sql);
+            if (mysqli_num_rows($result) > 0) {
+              return true;
+            } else {
+              return false;
             }
         }
-
-        public function checkPseudo(){
-            $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
-            $sql = "SELECT * FROM $this->tableName WHERE pseudonyme = $pseudonyme";
-
-            if(mysqli_num_rows($sql)) {
-                $checkPseudo = 'exist';              
-            }
-        }
-
-
     }
