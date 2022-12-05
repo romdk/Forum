@@ -49,7 +49,7 @@
                             } else {
                                 $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
                                 $data = ['mail' => $mail, 'pseudonyme' => $pseudonyme, 'motDePasse' => $motDePasseHash];
-                                return [$visiteurManager->add($data)];
+                                $visiteurManager->add($data);
                                 Session::addFlash('success','Inscription réussie');
                                 self::redirectTo('security','pageConnexion',null);
                             }
@@ -79,6 +79,8 @@
                         $visiteur = $visiteurManager->findOneByPseudo($pseudonyme);
                         if (password_verify($motDePasse, $motDePasseHash)) {
                             Session::setVisiteur($visiteur);
+                            // var_dump($visiteur);die;
+                            var_dump(Session::getVisiteur());die;
                             header("Location: index.php");
                         } else {
                             Session::addFlash('error','Mot de passe incorrect');

@@ -61,9 +61,10 @@
             $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,'1erMessage',FILTER_SANITIZE_SPECIAL_CHARS);
+            // var_dump(Session::getVisiteur()); die;
             
-            $dataSujet = ['visiteur_id' => '1', 'categorie_id' => $categorieId, 'titre' => $titre];
-            $dataMessage = ['visiteur_id' => '1', 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
+            $dataSujet = ['visiteur_id' => Session::getVisiteur()->getId(), 'categorie_id' => $categorieId, 'titre' => $titre];
+            $dataMessage = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
 
             self::redirectTo('forum','listSujets',$categorieId);
             return [
