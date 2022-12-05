@@ -26,28 +26,35 @@
         }
 
         public function inscription(){
-            $ajoutVisiteur = new VisiteurManager();
+            $visiteurManager = new VisiteurManager();
             $mail = filter_input(INPUT_POST,'mail',FILTER_VALIDATE_EMAIL);
             $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
             $motDePasse = filter_input(INPUT_POST,'motDePasse',FILTER_SANITIZE_SPECIAL_CHARS);
             $motDePasseConfirm = filter_input(INPUT_POST,'motDePasseConfirm',FILTER_SANITIZE_SPECIAL_CHARS);
 
             if($mail && $pseudonyme && $motDePasse && $motDePasseConfirm){
-                if ($ajoutVisiteur->checkVisiteur($mail, $pseudonyme)) {
-                    $_SESSION['message'] = "<div class='erreur'>Pseudonyme ou email déjà utilisé.</div>";
+                if ($visiteurManager->checkPseudo($pseudonyme)) {
+                    $_SESSION['message'] = "<div class='erreur'>Pseudonyme déjà utilisé</div>";
+                    header("Location:index.php?ctrl=security&action=pageInscription");
                   } else {
+                    if ($visiteurManager->checkMail($mail)) {
+                        $_SESSION['message'] = "<div class='erreur'>Mail déjà utilisé</div>";
+                        header("Location:index.php?ctrl=security&action=pageInscription");
+                      } else {
                         if($motDePasse !== $motDePasseConfirm){
                             $_SESSION['message'] = "<div class='erreur'>Les mot de passes ne correspondent pas</div>";
+                            header("Location:index.php?ctrl=security&action=pageInscription");
                         } else {
                             $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
                             $data = ['mail' => $mail, 'pseudonyme' => $pseudonyme, 'motDePasse' => $motDePasseHash];
-                            return [$ajoutVisiteur->add($data)];
+                            return [$visiteurManager->add($data)];
                             $_SESSION['message'] = "<div class='message'>Inscription réussie</div>";
                             header("Location:index.php?ctrl=security&action=pageConnexion");
                             exit();
                         }
                     }
                 }
+            }
             else{
                 $_SESSION['message'] = "<div class='erreur'>Formulaire incomplet</div>";
                 header("Location:index.php?ctrl=security&action=pageInscription");

@@ -14,10 +14,20 @@
             parent::connect();
         }
 
-        function checkVisiteur($pseudonyme, $mail) {
-            $sql = "SELECT * FROM $this->$tableName WHERE pseudonyme='$pseudonyme' OR mail='$mail'";    
-            $result = mysqli_query(DAO::$bdd, $sql);
-            if (mysqli_num_rows($result) > 0) {
+        function checkPseudo($pseudonyme) {
+            $sql = "SELECT * FROM $this->tableName WHERE pseudonyme = :pseudonyme";    
+            $result = DAO::select($sql,['pseudonyme' => $pseudonyme]);
+            if ($result != null) {
+              return true;
+            } else {
+              return false;
+            }
+        }
+        
+        function checkMail($mail) {
+            $sql = "SELECT * FROM $this->tableName WHERE mail = :mail";    
+            $result = DAO::select($sql,['mail' => $mail]);
+            if ($result != null) {
               return true;
             } else {
               return false;
