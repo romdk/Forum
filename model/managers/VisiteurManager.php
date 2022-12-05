@@ -34,16 +34,12 @@
           
       }
 
-      public function getMotDePasseHash($pseudonyme){
+      public function getMotDePasseBdd($pseudonyme){
         $sql = "SELECT motDePasse FROM $this->tableName WHERE pseudonyme = :pseudonyme";
-
-        
+       
         return $this->getOneOrNullResult(
           DAO::select($sql,['pseudonyme' => $pseudonyme], false),
           $this->className
         );
-
-        
-  
       }
     }
