@@ -131,6 +131,6 @@
         }
 
         public function __toString() {
-                return $this->id.$this->mail.$this->pseudonyme.$this->motDePasse.$this->dateInscription.$this->role;
+                return $this->id.$this->mail.$this->pseudonyme.$this->motDePasse.$this->getDateInscription().$this->role;
         }
     }

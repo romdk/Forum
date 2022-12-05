@@ -18,7 +18,7 @@
         $sql = "SELECT * FROM $this->tableName WHERE pseudonyme = :pseudonyme"; 
             
         return $this->getOneOrNullResult(
-          DAO::select($sql,['pseudonyme' => $pseudonyme]),
+          DAO::select($sql,['pseudonyme' => $pseudonyme], false),
           $this->className
         );
           
@@ -27,7 +27,7 @@
       public function findOneByMail($mail) {
           $sql = "SELECT * FROM $this->tableName WHERE mail = :mail";    
           return $this->getOneOrNullResult(
-             DAO::select($sql,['mail' => $mail]),
+             DAO::select($sql,['mail' => $mail], false),
              $this->className
           );
 
