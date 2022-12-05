@@ -64,8 +64,8 @@
             
             $dataSujet = ['visiteur_id' => '1', 'categorie_id' => $categorieId, 'titre' => $titre];
             $dataMessage = ['visiteur_id' => '1', 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
-            
-            // header("Location:index.php?ctrl=forum&action=listMessages&id=");
+
+            self::redirectTo('forum','listSujets',$categorieId);
             return [
                 $ajoutMessage->add($dataMessage)
             ]; 
@@ -77,7 +77,7 @@
             $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = ['visiteur_id' => '1', 'sujet_id' => $sujetId, 'message' => $message];
-            header("Location:index.php?ctrl=forum&action=listMessages&id=$sujetId");
+            self::redirectTo('forum','listMessages',$sujetId);
 
             return [
                 $ajoutMessage->add($data)

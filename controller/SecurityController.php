@@ -27,60 +27,73 @@
 
         public function inscription(){
             $visiteurManager = new VisiteurManager();
-            $mail = filter_input(INPUT_POST,'mail',FILTER_VALIDATE_EMAIL);
-            $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
-            $motDePasse = filter_input(INPUT_POST,'motDePasse',FILTER_SANITIZE_SPECIAL_CHARS);
-            $motDePasseConfirm = filter_input(INPUT_POST,'motDePasseConfirm',FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if($mail && $pseudonyme && $motDePasse && $motDePasseConfirm){
-                if ($visiteurManager->findOneByPseudo($pseudonyme)) {
-                    $_SESSION['message'] = "<div class='erreur'>Pseudonyme déjà utilisé</div>";
-                    header("Location:index.php?ctrl=security&action=pageInscription");
-                  } else {
-                    if ($visiteurManager->findOneByMail($mail)) {
-                        $_SESSION['message'] = "<div class='erreur'>Mail déjà utilisé</div>";
-                        header("Location:index.php?ctrl=security&action=pageInscription");
-                      } else {
-                        if($motDePasse !== $motDePasseConfirm){
-                            $_SESSION['message'] = "<div class='erreur'>Les mot de passes ne correspondent pas</div>";
-                            header("Location:index.php?ctrl=security&action=pageInscription");
+            if(isset($_POST['validerInscription'])) {
+                $mail = filter_input(INPUT_POST,'mail',FILTER_VALIDATE_EMAIL);
+                $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
+                $motDePasse = filter_input(INPUT_POST,'motDePasse',FILTER_SANITIZE_SPECIAL_CHARS);
+                $motDePasseConfirm = filter_input(INPUT_POST,'motDePasseConfirm',FILTER_SANITIZE_SPECIAL_CHARS);
+
+                if($mail && $pseudonyme && $motDePasse && $motDePasseConfirm){
+                    if ($visiteurManager->findOneByPseudo($pseudonyme)) {
+                        Session::addFlash('error','Pseudonyme déjà utilisé');
+                        self::redirectTo('security','pageInscription',null);
+                    } else {
+                        if ($visiteurManager->findOneByMail($mail)) {
+                            Session::addFlash('error','Mail déjà utilisé');
+                            self::redirectTo('security','pageInscription',null);
                         } else {
-                            $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
-                            $data = ['mail' => $mail, 'pseudonyme' => $pseudonyme, 'motDePasse' => $motDePasseHash];
-                            return [$visiteurManager->add($data)];
-                            $_SESSION['message'] = "<div class='message'>Inscription réussie</div>";
-                            header("Location:index.php?ctrl=security&action=pageConnexion");
+                            if($motDePasse !== $motDePasseConfirm){
+                                Session::addFlash('error','Les mots de passes ne correspondent pas');
+                                self::redirectTo('security','pageInscription',null);
+                            } else {
+                                $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
+                                $data = ['mail' => $mail, 'pseudonyme' => $pseudonyme, 'motDePasse' => $motDePasseHash];
+                                return [$visiteurManager->add($data)];
+                                Session::addFlash('success','Inscription réussie');
+                                self::redirectTo('security','pageConnexion',null);
+                            }
                         }
                     }
                 }
-            }
-            else{
-                $_SESSION['message'] = "<div class='erreur'>Formulaire incomplet</div>";
-                header("Location:index.php?ctrl=security&action=pageInscription");
-                exit();
+                else{
+                    Session::addFlash('error','Champ manquant');
+                    self::redirectTo('security','pageInscription',null);
+                    exit();
+                }
             }
         }
 
         public function connexion(){
             $visiteurManager = new VisiteurManager();
-            $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
-            $motDePasse = filter_input(INPUT_POST,'motDePasse',FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($pseudonyme && $motDePasse) {
-                $motDePasseHash = $visiteurManager->getMotDePasseHash($pseudonyme);
-                var_dump($motDePasse);
-                var_dump($motDePasseHash); die;
+            if(isset($_POST['validerConnexion'])) {
 
-                if (password_verify($motDePasse, $motDePasseHash)) {
-                    $visiteur = $visiteurManager->findOneByPseudo($pseudonyme);
-                    // var_dump($visiteur); die;
-                    Session::setVisiteur($visiteur);
-                    header("Location: index.php");
-                } else {
-                    $_SESSION['message'] = "<div class='erreur'>Mot de passe incorrect</div>";
+                $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
+                $motDePasse = filter_input(INPUT_POST,'motDePasse',FILTER_SANITIZE_SPECIAL_CHARS);
+
+                if ($pseudonyme && $motDePasse) {
+                    $motDePasseBdd = $visiteurManager->getMotDePasseBdd($pseudonyme);
+                    if($motDePasseBdd){
+                        $motDePasseHash = $motDePasseBdd->getMotDePasse();
+                        $visiteur = $visiteurManager->findOneByPseudo($pseudonyme);
+                        if (password_verify($motDePasse, $motDePasseHash)) {
+                            Session::setVisiteur($visiteur);
+                            header("Location: index.php");
+                        } else {
+                            Session::addFlash('error','Mot de passe incorrect');
+                            self::redirectTo('security','pageConnexion',null);
+                        }
+                    } else {
+                    $_SESSION['message'] = "<div class='erreur'>Champ manquant</div>";
+                    self::redirectTo('security','pageConnexion',null);
+                    }
                 }
-            } else {
-            $_SESSION['message'] = "<div class='erreur'>Champ manquant</div>";
             }
+        }
+
+        public function deconnexion(){
+            Session::unsetVisiteur();
+            self::redirectTo('security','pageConnexion',null);
         }
     }
