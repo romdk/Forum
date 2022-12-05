@@ -33,11 +33,11 @@
             $motDePasseConfirm = filter_input(INPUT_POST,'motDePasseConfirm',FILTER_SANITIZE_SPECIAL_CHARS);
 
             if($mail && $pseudonyme && $motDePasse && $motDePasseConfirm){
-                if ($visiteurManager->checkPseudo($pseudonyme)) {
+                if ($visiteurManager->findOneByPseudo($pseudonyme)) {
                     $_SESSION['message'] = "<div class='erreur'>Pseudonyme déjà utilisé</div>";
                     header("Location:index.php?ctrl=security&action=pageInscription");
                   } else {
-                    if ($visiteurManager->checkMail($mail)) {
+                    if ($visiteurManager->findOneByMail($mail)) {
                         $_SESSION['message'] = "<div class='erreur'>Mail déjà utilisé</div>";
                         header("Location:index.php?ctrl=security&action=pageInscription");
                       } else {
@@ -50,7 +50,6 @@
                             return [$visiteurManager->add($data)];
                             $_SESSION['message'] = "<div class='message'>Inscription réussie</div>";
                             header("Location:index.php?ctrl=security&action=pageConnexion");
-                            exit();
                         }
                     }
                 }
@@ -62,30 +61,26 @@
             }
         }
 
-        // public function connexion(){
-        //     $connexionVisiteur = new VisiteurManager();
-        //     $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
-        //     $motDePasse = filter_input(INPUT_POST,'motDePasse',FILTER_SANITIZE_SPECIAL_CHARS);
+        public function connexion(){
+            $visiteurManager = new VisiteurManager();
+            $pseudonyme = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
+            $motDePasse = filter_input(INPUT_POST,'motDePasse',FILTER_SANITIZE_SPECIAL_CHARS);
 
-        //     if ($pseudonyme && $motDePasse) {
-        //         $sql = "SELECT motDePasse FROM $this->$tableName WHERE pseudonyme='$pseudonyme'";
-        //         $result = mysqli_query(DAO::$bdd, $sql);
-        //         $motDePasseHash = mysqli_fetch_assoc($result)['motDePasse'];
-    
-        //         if (password_verify($motDePasse, $motDePasseHash)) {
-        //           $sql = "SELECT * FROM $this->$tableName WHERE pseudonyme='$pseudonyme'";
-        //           $result = mysqli_query(DAO::$bdd, $sql);
-        //           $visiteur = mysqli_fetch_assoc($result);
+            if ($pseudonyme && $motDePasse) {
+                $motDePasseHash = $visiteurManager->getMotDePasseHash($pseudonyme);
+                var_dump($motDePasse);
+                var_dump($motDePasseHash); die;
 
-        //           App\Session::setVisiteur($visiteur);
-
-        //           header("Location: index.php");
-        //           exit();
-        //         } else {
-        //             $_SESSION['message'] = "<div class='erreur'>Mot de passe incorreect</div>";
-        //         }
-        //     } else {
-        //     $_SESSION['message'] = "<div class='erreur'>Champ manquant</div>";
-        //     }
-        // }
+                if (password_verify($motDePasse, $motDePasseHash)) {
+                    $visiteur = $visiteurManager->findOneByPseudo($pseudonyme);
+                    // var_dump($visiteur); die;
+                    Session::setVisiteur($visiteur);
+                    header("Location: index.php");
+                } else {
+                    $_SESSION['message'] = "<div class='erreur'>Mot de passe incorrect</div>";
+                }
+            } else {
+            $_SESSION['message'] = "<div class='erreur'>Champ manquant</div>";
+            }
+        }
     }
