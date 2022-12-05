@@ -6,31 +6,44 @@
 
     class VisiteurManager extends Manager{
 
-        protected $className = "Model\Entities\Visiteur";
-        protected $tableName = "visiteur";
+      protected $className = "Model\Entities\Visiteur";
+      protected $tableName = "visiteur";
 
 
-        public function __construct(){
-            parent::connect();
-        }
+      public function __construct(){
+          parent::connect();
+      }
 
-        function checkPseudo($pseudonyme) {
-            $sql = "SELECT * FROM $this->tableName WHERE pseudonyme = :pseudonyme";    
-            $result = DAO::select($sql,['pseudonyme' => $pseudonyme]);
-            if ($result != null) {
-              return true;
-            } else {
-              return false;
-            }
-        }
+      public function findOneByPseudo($pseudonyme) {
+        $sql = "SELECT * FROM $this->tableName WHERE pseudonyme = :pseudonyme"; 
+            
+        return $this->getOneOrNullResult(
+          DAO::select($sql,['pseudonyme' => $pseudonyme]),
+          $this->className
+        );
+          
+      }
+
+      public function findOneByMail($mail) {
+          $sql = "SELECT * FROM $this->tableName WHERE mail = :mail";    
+          return $this->getOneOrNullResult(
+             DAO::select($sql,['mail' => $mail]),
+             $this->className
+          );
+
+          
+      }
+
+      public function getMotDePasseHash($pseudonyme){
+        $sql = "SELECT motDePasse FROM $this->tableName WHERE pseudonyme = :pseudonyme";
+
         
-        function checkMail($mail) {
-            $sql = "SELECT * FROM $this->tableName WHERE mail = :mail";    
-            $result = DAO::select($sql,['mail' => $mail]);
-            if ($result != null) {
-              return true;
-            } else {
-              return false;
-            }
-        }
+        return $this->getOneOrNullResult(
+          DAO::select($sql,['pseudonyme' => $pseudonyme], false),
+          $this->className
+        );
+
+        
+  
+      }
     }
