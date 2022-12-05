@@ -125,8 +125,12 @@
 
                 return $this;
         }
+        
+        public function hasRole(){
+                $sql = "SELECT * FROM visiteur WHERE role = :role";
+        }
 
         public function __toString() {
-                return $this->motDePasse;
-              }
+                return $this->pseudonyme.$this->motDePasse.$this->dateInscription.$this->role.$this->mail;
+        }
     }
