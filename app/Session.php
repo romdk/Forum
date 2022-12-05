@@ -37,6 +37,10 @@
             return (isset($_SESSION['visiteur'])) ? $_SESSION['visiteur'] : false;
         }
 
+        public static function unsetVisiteur(){
+            unset($_SESSION["visiteur"]);
+        }
+
         public static function isAdmin(){
             if(self::getVisiteur() && self::getVisiteur()->hasRole("ROLE_ADMIN")){
                 return true;
