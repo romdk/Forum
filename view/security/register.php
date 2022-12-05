@@ -1,4 +1,3 @@
-<div><?php if(isset($_SESSION['message'])){ echo $_SESSION['message'];}?></div>
 
 <form class="formulaire" action='index.php?ctrl=security&action=inscription' method='post'>
     <p>Inscription</p>
@@ -6,6 +5,6 @@
     <input class="champMail" type="email" name="mail" placeholder="Saisir une adresse email valide">
     <input class="champMdp" type="password" name="motDePasse" placeholder="Saisir un mot de passe">
     <input class="champMdp" type="password" name="motDePasseConfirm" placeholder="Confirmer mot de passe">
-    <input class="btnInscription" type="submit" name="valider" value="S'inscrire">
+    <input class="btnInscription" type="submit" name="validerInscription" value="S'inscrire">
     <a href="index.php?ctrl=security&action=pageConnexion">Déjà inscrit ?</a>
 </form>
