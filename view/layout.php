@@ -36,9 +36,10 @@
                     <?php
                         
                         if(App\Session::getVisiteur()){
+                            // var_dump(App\Session::getVisiteur()); die;
                             ?>
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getVisiteur()?></a>
-                            <a href="/security/logout.html">Déconnexion</a>
+                            <a href="index.php?ctrl=security&action=deconnexion">Déconnexion</a>
                             <?php
                         }
                         else{
