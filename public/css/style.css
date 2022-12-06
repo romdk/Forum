@@ -532,15 +532,16 @@ nav .titre{
 }
 
 .message2 .pseudo{
-    width: 94%;
+    width: 90%;
 }
 
 .message2 .role{
     display: flex;
+    /* width: 50%; */
     padding: 0 5px;
     border-radius: 5px;
     background-color: #1A1C40;
-    /* width: 50%; */
+    justify-content: flex-end;
 }
 
 .message2 .date{
