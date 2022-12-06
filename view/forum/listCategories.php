@@ -11,7 +11,6 @@ $categories = $result["data"]['categories'];
             <a href="index.php?ctrl=forum&action=listSujets&id=<?= $categorie->getId()?>">
                 <div class="categorie">
                 <p class="nomCategorie"><?=$categorie->getNomCategorie()?></p>
-                <p>dernier sujet</p>
                 </div>
             </a>
         <?php

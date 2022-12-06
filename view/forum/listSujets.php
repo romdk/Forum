@@ -24,7 +24,6 @@ if(App\Session::getVisiteur()){ ?>
                     <p class="titre"><?=$sujet->getTitre()?></p>
                     <p class="par">par</p>
                     <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
-                    <p class="message2">dernier message</p>
                 </div>
             </a>
         <?php

@@ -25,16 +25,4 @@
                 $this->className
             );
         }
-
-        public function findLastSujetByCategorie($id) {
-
-            $sql = "SELECT *
-                    FROM $this->tableName
-                    WHERE dateCreation = (SELECT MAX(dateCreation) FROM $this->tableName WHERE categorie_id = :id)";
-
-            return $this->getOneOrNullResult(
-                DAO::select($sql,['id' => $id]),
-                $this->className
-            );
-        }
     }
