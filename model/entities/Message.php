@@ -118,4 +118,8 @@
         $this->dateCreation = new \DateTime($date);
         return $this;
         }
+
+        public function __toString() {
+                return $this->message;
+        }
     }
