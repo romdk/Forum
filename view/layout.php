@@ -21,7 +21,6 @@
                     <div id="nav-left">
                         <a class="titre" href="index.php">Forum.</a>
                         <?php
-                        // var_dump(App\Session::getVisiteur());die;
                         if(App\Session::isAdmin()){
                             ?>
                             <a href="index.php?ctrl=home&action=visiteurs">Voir la liste des gens</a>
