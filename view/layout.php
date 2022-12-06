@@ -20,14 +20,6 @@
                 <nav>
                     <div id="nav-left">
                         <a class="titre" href="index.php">Forum.</a>
-                        <?php
-                        if(App\Session::isAdmin()){
-                            ?>
-                            <a href="index.php?ctrl=home&action=visiteurs">Voir la liste des gens</a>
-                          
-                            <?php
-                        }
-                        ?>
                     </div>
                     <div class='searchbar' >
                         <input type="text" id="searchBar" onkeyup="affSuggestions()"  placeholder="Rechercher un sujet"><i class="fa-solid fa-magnifying-glass"></i>
@@ -48,9 +40,13 @@
                             <a href="index.php?ctrl=security&action=pageInscription">Inscription</a>
                         <?php
                         }
-                   
-                        
-                    ?>
+                        if(App\Session::isAdmin()){
+                            ?>
+                            <a id='utilisateurs' href="index.php?ctrl=home&action=visiteurs">Liste Utilisateurs</a>
+                          
+                            <?php
+                        }
+                        ?>
                     </div>
                 </nav>
             </header>

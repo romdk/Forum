@@ -145,6 +145,12 @@ nav .titre{
     color: #1A1C40;
 }
 
+#utilisateurs {
+    position: absolute;
+    bottom: 0;
+    font-size: 0.7rem;
+}
+
 /* -----------------------------------HOME------------------------------------ */
 #home{
     padding: 20px;
