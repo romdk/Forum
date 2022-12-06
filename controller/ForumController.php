@@ -65,11 +65,8 @@
             
             $dataSujet = ['visiteur_id' => Session::getVisiteur()->getId(), 'categorie_id' => $categorieId, 'titre' => $titre];
             $dataMessage = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
-
+            $ajoutMessage->add($dataMessage);
             self::redirectTo('forum','listSujets',$categorieId);
-            return [
-                $ajoutMessage->add($dataMessage)
-            ]; 
         }
 
         public function ajoutMessage(){
@@ -77,12 +74,9 @@
             $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
-            $data = ['visiteur_id' => '1', 'sujet_id' => $sujetId, 'message' => $message];
+            $data = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $sujetId, 'message' => $message];
+            $ajoutMessage->add($data);
             self::redirectTo('forum','listMessages',$sujetId);
-
-            return [
-                $ajoutMessage->add($data)
-            ];
         }
             
             
