@@ -42,7 +42,7 @@
                         }
                         if(App\Session::isAdmin()){
                             ?>
-                            <a id='utilisateurs' href="index.php?ctrl=home&action=visiteurs">Liste Utilisateurs</a>
+                            <a id='utilisateurs' href="index.php?ctrl=home&action=listeVisiteurs">Liste Utilisateurs</a>
                           
                             <?php
                         }

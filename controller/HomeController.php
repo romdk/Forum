@@ -23,14 +23,14 @@
             
         
    
-        public function visiteurs(){
-            $this->restrictTo("ROLE_USER");
+        public function listeVisiteurs(){
+            $this->restrictTo("Admin");
 
             $manager = new VisiteurManager();
             $visiteurs = $manager->findAll(['dateInscription', 'DESC']);
 
             return [
-                "view" => VIEW_DIR."security/visiteurs.php",
+                "view" => VIEW_DIR."security/listeVisiteurs.php",
                 "data" => [
                     "visiteurs" => $visiteurs
                 ]
