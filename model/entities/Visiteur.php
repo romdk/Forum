@@ -2,6 +2,7 @@
     namespace Model\Entities;
 
     use App\Entity;
+    use App\Session;
 
     final class Visiteur extends Entity{
 
@@ -125,12 +126,14 @@
 
                 return $this;
         }
-        
-        public function hasRole(){
-                $sql = "SELECT * FROM visiteur WHERE role = :role";
-        }
 
         public function __toString() {
-                return $this->id.$this->mail.$this->pseudonyme.$this->motDePasse.$this->getDateInscription().$this->role;
+                return $this->pseudonyme;
+        }
+
+        public function hasRole($role){
+                if(Session::getVisiteur()->getRole() == $role){
+                        return true;
+                }
         }
     }
