@@ -62,11 +62,17 @@
             $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,'1erMessage',FILTER_SANITIZE_SPECIAL_CHARS);
             // var_dump(Session::getVisiteur()); die;
-            
-            $dataSujet = ['visiteur_id' => Session::getVisiteur()->getId(), 'categorie_id' => $categorieId, 'titre' => $titre];
-            $dataMessage = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
-            $ajoutMessage->add($dataMessage);
-            self::redirectTo('forum','listSujets',$categorieId);
+
+            if($titre && $message){            
+                $dataSujet = ['visiteur_id' => Session::getVisiteur()->getId(), 'categorie_id' => $categorieId, 'titre' => $titre];
+                $dataMessage = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
+                $ajoutMessage->add($dataMessage);
+                Session::addFlash('success','Sujet créé');
+                self::redirectTo('forum','listSujets',$categorieId);
+            }else {
+                Session::addFlash('error','Champ vide');
+                self::redirectTo('forum','listSujets',$categorieId);
+            }
         }
 
         public function ajoutMessage(){
@@ -74,9 +80,16 @@
             $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
-            $data = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $sujetId, 'message' => $message];
-            $ajoutMessage->add($data);
-            self::redirectTo('forum','listMessages',$sujetId);
+            if($message){
+                $data = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $sujetId, 'message' => $message];
+                $ajoutMessage->add($data);
+                Session::addFlash('success','Message ajouté');
+                self::redirectTo('forum','listMessages',$sujetId);
+            }else {
+                Session::addFlash('error','Aucun message');
+                self::redirectTo('forum','listMessages',$sujetId);
+            }
+
         }
             
             
