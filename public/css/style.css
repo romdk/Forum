@@ -21,6 +21,10 @@ body::-webkit-scrollbar{
     display: none;
 }
 
+#wrapper::-webkit-scrollbar{
+    display: none;
+}
+
 #wrapper{
     display: flex;
     justify-content: center;
@@ -28,13 +32,12 @@ body::-webkit-scrollbar{
     position: relative;
     border-radius: 10px;
     width: 90vw;
-    min-height: 90vh;
-    height: fit-content;
+    height: 90vh;
+    overflow: scroll;
     margin-top: 50px;
     margin-bottom: 50px;
     background-color: #4449a66b;
     padding-top: 100px;
-    padding-bottom: 200px;
 }
 
 a {
@@ -43,13 +46,13 @@ a {
   }
 
 nav{
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: 30px;
+    left: 95px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90vw;
     height: 80px;
     padding: 20px;
     background-color: #494FBF;
@@ -157,9 +160,12 @@ nav .titre{
 }
 
 #home #entrer{
-    position: absolute;
-    top: 600px;
-    left: 45%;
+    /* position: absolute; */
+    /* top: 600px;
+    left: 45%; */
+    margin-top: 200px;
+    margin-bottom: 140px;
+    text-align: center;
     font-size: 2rem;
     text-transform: uppercase;
 }
@@ -176,7 +182,7 @@ nav .titre{
 
 /* -----------------------------------INSCRIPTION/CONNEXION------------------------------------ */
 
-@keyframes animate{
+/* @keyframes animate{
     0% {
         transform: translateY(0px);        
     }
@@ -189,25 +195,19 @@ nav .titre{
     100%{
         transform: translateY(-30px);
     }
-}
-/* 
+} */
+
 .message{
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 60px;
     width: 100%;
-    height: 30px;
-    background-color: #2ed373;
-    color: white;
     text-align: center;
-    line-height: 30px;
     text-transform: uppercase;
     font-weight: 500;
-    animation: animate 4s;
-    z-index: 0;
 }
 
-.erreur{
+/* .erreur{
     position: absolute;
     left: 0;
     top: 50px;
@@ -639,13 +639,13 @@ nav .titre{
 
 
 footer{
-    position: absolute;
-    bottom: 0;
+    /* position: absolute;
+    bottom: 0; */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100px;
-    /* margin-top: 50px; */
+    margin-top: 100px;
     background-color: #1d1d1d;
 }
