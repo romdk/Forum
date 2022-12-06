@@ -10,10 +10,13 @@ $messages = $result["data"]['messages'];
     <p>date de creation du sujet</p>
 </div>
 
-<form class="nouveauMessage" action='index.php?ctrl=forum&action=ajoutMessage&id=<?=$id?>' method='post'>nouveau message
-            <textarea class="champMessage" type="text" name="message" placeholder="Saisir un message"></textarea>
-            <input class="btnAjouter" type="submit" name="ajouterMessage" value="Ajouter message">
-        </form>
+<?php 
+if(App\Session::getVisiteur()){ ?>
+    <form class="nouveauMessage" action='index.php?ctrl=forum&action=ajoutMessage&id=<?=$id?>' method='post'>nouveau message
+                <textarea class="champMessage" type="text" name="message" placeholder="Saisir un message"></textarea>
+                <input class="btnAjouter" type="submit" name="ajouterMessage" value="Ajouter message">
+    </form>
+<?php } ?>
 
 <div class="listeMessages">
     <?php
