@@ -42,7 +42,7 @@
         }
 
         public static function isAdmin(){
-            if(self::getVisiteur() && self::getVisiteur()->hasRole("ROLE_ADMIN")){
+            if(self::getVisiteur() && self::getVisiteur()->hasRole("Admin")){
                 return true;
             }
             return false;
