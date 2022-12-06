@@ -127,7 +127,48 @@ nav .titre{
 }
 
 
-/* -----------------------------------INSCRIPTION------------------------------------ */
+#nav-right a{
+    color: #f1f1f1;
+    transition: .2s;
+}
+
+#nav-right a:hover{
+    color: #1A1C40;
+}
+
+#nav-right a span{
+    color: #f1f1f1;
+    transition: .2s;
+}
+
+#nav-right a:hover span{
+    color: #1A1C40;
+}
+
+/* -----------------------------------HOME------------------------------------ */
+#home{
+    padding: 20px;
+}
+
+#home #entrer{
+    position: absolute;
+    top: 600px;
+    left: 45%;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+#home #entrer a{
+    transition: .2s;
+    color: #f1f1f1;
+}
+
+#home #entrer a:hover{
+    color: #0F1359;
+}
+
+
+/* -----------------------------------INSCRIPTION/CONNEXION------------------------------------ */
 
 @keyframes animate{
     0% {
