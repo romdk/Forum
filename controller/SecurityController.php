@@ -80,16 +80,18 @@
                         if (password_verify($motDePasse, $motDePasseHash)) {
                             Session::setVisiteur($visiteur);
                             // var_dump($visiteur);die;
-                            var_dump(Session::getVisiteur());die;
+                            // var_dump(Session::getVisiteur());die;
+                            // var_dump(Session::getVisiteur()->$visiteurManager->hasRole('Admin')); die;
+
                             header("Location: index.php");
                         } else {
                             Session::addFlash('error','Mot de passe incorrect');
                             self::redirectTo('security','pageConnexion',null);
                         }
-                    } else {
-                    $_SESSION['message'] = "<div class='erreur'>Champ manquant</div>";
-                    self::redirectTo('security','pageConnexion',null);
                     }
+                } else {
+                Session::addFlash('error','Champ manquant');
+                self::redirectTo('security','pageConnexion',null);
                 }
             }
         }
