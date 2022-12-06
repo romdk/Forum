@@ -283,6 +283,15 @@ nav .titre{
     color: #181e8a;
 }
 
+
+/* -----------------------------------LISTE VISITEURS------------------------------------ */
+.infosVisiteur{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #1A1C40;
+}
+
 /* -----------------------------------CATEGORIES------------------------------------ */
 
 .listeCategories{
