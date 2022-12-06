@@ -10,19 +10,28 @@
     class SecurityController extends AbstractController implements ControllerInterface{
 
         
-        public function pageInscription(){            
+        public function pageInscription(){   
+            
+            if(Session::getVisiteur()){
+                header("Location: index.php");
+            } else{
+                return [
+                    "view" => VIEW_DIR."security/register.php"
+                ];
+            }
            
-            return [
-                "view" => VIEW_DIR."security/register.php"
-            ];
         }
         
         public function pageConnexion(){     
-            unset($_SESSION["message"]);       
-           
-            return [
-                "view" => VIEW_DIR."security/login.php"
-            ];
+            unset($_SESSION["message"]);   
+            
+            if(Session::getVisiteur()){
+                header("Location: index.php");
+            } else{           
+                return [
+                    "view" => VIEW_DIR."security/login.php"
+                ];
+            }
         }
 
         public function inscription(){
