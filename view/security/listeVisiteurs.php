@@ -10,11 +10,11 @@
             $id = $visiteur->getId();
             ?>
             <li class='infosVisiteur'>
-                <p>Pseudonyme: <?= $visiteur->getPseudonyme()?></p>
-                <p>Inscrit le <?= $visiteur->getDateInscription()?></p>
-                <p>Role: <?= $visiteur->getRole()?></p>
-                <p>Mail: <?= $visiteur->getMail()?></p>
-                <p>dernier message: <?= $messageManager->findLastMessageFromVisiteur($id)?></p>
+                <span class='intitule'>Pseudonyme: </span><span class='contenu'> <?= $visiteur->getPseudonyme()?></span>
+                <span class='intitule'>Inscrit le </span><span class='contenu'> <?= $visiteur->getDateInscription()?></span>
+                <span class='intitule'>Role: </span><span class='contenu'> <?= $visiteur->getRole()?></span>
+                <span class='intitule'>Mail: </span><span class='contenu'> <?= $visiteur->getMail()?></span>
+                <span class='intitule'>dernier message: </span><span class='contenu'> <?= $messageManager->findLastMessageFromVisiteur($id)?></span>
             </li>
             <?php
         }
