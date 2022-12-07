@@ -1,4 +1,4 @@
-aff list utilisateurs
-moderation: verrouiller sujet, suppr sujet, suppr message, bannir utilisateurs
+ajout message uniquement si statut = unlocked
+moderation: suppr message, bannir utilisateurs
 aff page profil
 vote +- messages
