@@ -56,8 +56,8 @@
             }
 
         public function ajoutSujet(){
-            $ajoutSujet = new SujetManager();
-            $ajoutMessage = new MessageManager();
+            $sujetManager = new SujetManager();
+            $messageManager = new MessageManager();
             $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,'1erMessage',FILTER_SANITIZE_SPECIAL_CHARS);
@@ -65,8 +65,8 @@
 
             if($titre && $message){            
                 $dataSujet = ['visiteur_id' => Session::getVisiteur()->getId(), 'categorie_id' => $categorieId, 'titre' => $titre];
-                $dataMessage = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $ajoutSujet->add($dataSujet), 'message' => $message];
-                $ajoutMessage->add($dataMessage);
+                $dataMessage = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $sujetManager->add($dataSujet), 'message' => $message];
+                $messageManager->add($dataMessage);
                 Session::addFlash('success','Sujet créé');
                 self::redirectTo('forum','listSujets',$categorieId);
             }else {
@@ -75,14 +75,25 @@
             }
         }
 
+        public function supprimerSujet(){
+            $sujetManager = new SujetManager();
+            $messageManager = new MessageManager();
+            $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null; 
+            // var_dump($sujetId);die;
+            $messageManager->deleteAllMessageFromSujet($sujetId);
+            $sujetManager->delete($sujetId);
+            Session::addFlash('success','Sujet supprimé');
+            self::redirectTo('forum','listSujets','2');
+        }
+
         public function ajoutMessage(){
-            $ajoutMessage = new MessageManager();
+            $messageManager = new MessageManager();
             $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
 
             if($message){
                 $data = ['visiteur_id' => Session::getVisiteur()->getId(), 'sujet_id' => $sujetId, 'message' => $message];
-                $ajoutMessage->add($data);
+                $messageManager->add($data);
                 Session::addFlash('success','Message ajouté');
                 self::redirectTo('forum','listMessages',$sujetId);
             }else {

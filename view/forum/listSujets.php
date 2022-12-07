@@ -24,6 +24,8 @@ if(App\Session::getVisiteur()){ ?>
                     <p class="titre"><?=$sujet->getTitre()?></p>
                     <p class="par">par</p>
                     <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
+                    <a class="verrouiller" href="index.php?ctrl=forum&action=verrouiller&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock"></i>Verrouiller</a>
+                    <a class="supprimer" href="index.php?ctrl=forum&action=supprimerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer<a>
                 </div>
             </a>
         <?php

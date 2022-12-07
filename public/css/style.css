@@ -182,21 +182,6 @@ nav .titre{
 
 /* -----------------------------------INSCRIPTION/CONNEXION------------------------------------ */
 
-/* @keyframes animate{
-    0% {
-        transform: translateY(0px);        
-    }
-    5% {
-        transform: translateY(30px);        
-    }
-    90%{
-        transform: translateY(30px);
-    }
-    100%{
-        transform: translateY(-30px);
-    }
-} */
-
 .message{
     position: absolute;
     left: 0;
@@ -450,6 +435,7 @@ nav .titre{
     gap: 20px;
 }
 .sujet{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -487,12 +473,45 @@ nav .titre{
     /* transform: translateY(-35px); */
 }
 
-.sujet .message2{
+.verrouiller{
+    position: absolute;
+    bottom: 5px;
+    right: 100px;
+    font-size: .8rem;
+    font-weight: 200;
+    transition: .2s;
+}
+
+.supprimer{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: .8rem;
+    font-weight: 200;
+    transition: .2s;
+}
+
+.fa-solid{
+margin-right: 3px;
+transition: .2s;
+}
+
+.verrouiller:hover, .supprimer:hover{
+    color: #181e8a;
+    cursor: pointer;
+}
+
+.verrouiller:hover .fa-solid, .supprimer:hover .fa-solid{
+    color: #181e8a;
+    cursor: pointer;
+}
+
+/* .sujet .message2{
     background-color: #4449A6;
     filter: none;
     width: 100%;
     
-}
+} */
 
 
 /* -----------------------------------MESSAGES------------------------------------ */

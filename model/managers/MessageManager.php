@@ -38,4 +38,12 @@
                 $this->className
              );
         }
+
+        public function deleteAllMessageFromSujet($id){
+            $sql = "DELETE FROM ".$this->tableName."
+                    WHERE sujet_id = :id
+                    ";
+
+            return DAO::delete($sql, ['id' => $id]);
+        }
     }
