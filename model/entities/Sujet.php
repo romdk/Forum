@@ -86,21 +86,21 @@
         }
 
         /**
-         * Get the value of verrouille
+         * Get the value of statut
          */ 
-        public function getVerrouille()
+        public function getStatut()
         {
-                return $this->verrouille;
+                return $this->statut;
         }
 
         /**
-         * Set the value of verrouille
+         * Set the value of statut
          *
          * @return  self
          */ 
-        public function setVerrouille($verrouille)
+        public function setStatut($statut)
         {
-                $this->verrouille = $verrouille;
+                $this->statut = $statut;
 
                 return $this;
         }

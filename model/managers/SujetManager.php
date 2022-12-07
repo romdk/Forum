@@ -25,4 +25,22 @@
                 $this->className
             );
         }
+
+        public function lock($id){
+            $sql = "UPDATE $this->tableName
+                    SET statut = '1'
+                    WHERE id_".$this->tableName." = :id
+                    ";
+
+            return DAO::update($sql, ['id' => $id]); 
+        }
+
+        public function unlock($id){
+            $sql = "UPDATE $this->tableName
+                    SET statut = '0'
+                    WHERE id_".$this->tableName." = :id
+                    ";
+
+            return DAO::update($sql, ['id' => $id]); 
+        }
     }

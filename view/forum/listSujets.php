@@ -24,8 +24,22 @@ if(App\Session::getVisiteur()){ ?>
                     <p class="titre"><?=$sujet->getTitre()?></p>
                     <p class="par">par</p>
                     <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
-                    <a class="verrouiller" href="index.php?ctrl=forum&action=verrouiller&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock"></i>Verrouiller</a>
-                    <a class="supprimer" href="index.php?ctrl=forum&action=supprimerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer<a>
+                    <?php
+                    // var_dump($sujet->getVisiteur());
+                    if(App\Session::isAdmin() || App\Session::getVisiteur()->getId() == $sujet->getVisiteur()->getId()){
+                        if($sujet->getStatut() == 0){ ?>
+                            <a class="statut unlocked" href="index.php?ctrl=forum&action=verrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock-open"></i>Sujet déverrouillé</a>
+                        <?php
+                        }else{ ?>
+                            <a class="statut locked" href="index.php?ctrl=forum&action=deverrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock"></i>Sujet vérouillé</a>
+                        <?php } ?>
+                        <?php
+                     } ?>
+                    <?php
+                    if(App\Session::isAdmin()) {
+                    ?>
+                        <a class="supprimer" href="index.php?ctrl=forum&action=supprimerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer<a>
+                    <?php } ?>
                 </div>
             </a>
         <?php

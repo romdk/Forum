@@ -79,11 +79,26 @@
             $sujetManager = new SujetManager();
             $messageManager = new MessageManager();
             $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null; 
-            // var_dump($sujetId);die;
             $messageManager->deleteAllMessageFromSujet($sujetId);
             $sujetManager->delete($sujetId);
             Session::addFlash('success','Sujet supprimé');
-            self::redirectTo('forum','listSujets','2');
+            self::redirectTo('forum','listCategories');
+        }
+
+        public function verrouillerSujet(){
+            $sujetManager = new SujetManager();
+            $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $sujetManager->lock($sujetId);
+            Session::addFlash('success','Sujet verouillé');
+            self::redirectTo('forum','listCategories');
+        }
+
+        public function deverrouillerSujet(){
+            $sujetManager = new SujetManager();
+            $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $sujetManager->unlock($sujetId);
+            Session::addFlash('success','Sujet déverrouillé');
+            self::redirectTo('forum','listCategories');
         }
 
         public function ajoutMessage(){
