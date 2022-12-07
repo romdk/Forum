@@ -473,13 +473,21 @@ nav .titre{
     /* transform: translateY(-35px); */
 }
 
-.verrouiller{
+.statut{
     position: absolute;
-    bottom: 5px;
-    right: 100px;
+    top: 5px;
+    right: 5px;
     font-size: .8rem;
     font-weight: 200;
     transition: .2s;
+}
+
+.locked .fa-solid{
+    color: rgb(255, 115, 0);
+}
+
+.unlocked .fa-solid{
+    color: rgb(0, 175, 0);
 }
 
 .supprimer{
@@ -496,13 +504,13 @@ margin-right: 3px;
 transition: .2s;
 }
 
-.verrouiller:hover, .supprimer:hover{
-    color: #181e8a;
+.statut:hover, .supprimer:hover{
+    color: #afafaf;
     cursor: pointer;
 }
 
-.verrouiller:hover .fa-solid, .supprimer:hover .fa-solid{
-    color: #181e8a;
+.statut:hover .fa-solid, .supprimer:hover .fa-solid{
+    color: #afafaf;
     cursor: pointer;
 }
 
