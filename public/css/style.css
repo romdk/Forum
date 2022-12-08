@@ -358,13 +358,49 @@ nav .titre{
     margin-bottom: 40px;
 }
 
+.profil form{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.profil #selectRole{
+    position: relative;
+    background-color: var(--clr-background2);
+    border: none;
+    outline: none;
+    padding: 2px 5px;
+    border-radius:  5px 0 0 5px;
+    font-size: .9rem;
+}
+
+.profil #selectRole:hover{
+    cursor: pointer;
+}
+
+.profil .btnValider{
+    background-color: var(--clr-accent2);
+    border: none;
+    padding: 3px 5px;
+    border-radius:  0 5px 5px 0;
+    font-size: .9rem;
+    transition: .2s;
+}
+
+.profil .btnValider:hover{
+    background-color: var(--clr-accent2hover);
+    cursor: pointer;
+    
+}
+
 .profil .btnBannir{
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    top: 10px;
     padding: 3px 5px;
     background-color: var(--clr-accent3);
     border-radius: 5px;
+    font-size: .9rem;
     transition: .2s;
 }
 
@@ -375,7 +411,7 @@ nav .titre{
 .profil .btnDebannir{
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    top: 10px;
     padding: 3px 5px;
     background-color: var(--clr-accent2);
     border-radius: 5px;

@@ -51,6 +51,14 @@
         );
       }
 
+      public function changerRole($id,$role){
+        $sql = "UPDATE $this->tableName
+                SET role = '$role'
+                WHERE id_".$this->tableName." = :id
+                ";
+        return DAO::update($sql, ['id' => $id]);
+      }
+
       public function ban($id){
         $sql = "UPDATE $this->tableName
                 SET statut = '1'

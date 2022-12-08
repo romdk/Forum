@@ -112,6 +112,18 @@
             self::redirectTo('security','pageConnexion',null);
         }
 
+        public function attribuerRole(){
+            $visiteurManager = new VisiteurManager();
+            if(isset($_POST['validerRole'])) {
+                $role = filter_input(INPUT_POST,'role',FILTER_SANITIZE_SPECIAL_CHARS);
+                $visiteurId=(isset($_GET["id"])) ? $_GET["id"] : null;
+                $visiteurManager->changerRole($visiteurId,$role);
+                Session::addFlash('success','Role changé');
+                self::redirectTo('forum','profilVisiteur',$visiteurId);
+            }
+
+        }
+
         public function banVisiteur(){
             $visiteurManager = new VisiteurManager();
             $visiteurId=(isset($_GET["id"])) ? $_GET["id"] : null;
