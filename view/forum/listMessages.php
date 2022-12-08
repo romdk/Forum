@@ -28,14 +28,20 @@ if(App\Session::getVisiteur()){ ?>
                 <p class="date"><?=$message->getDateCreation()?></p>
                 <p class="texte"><?=$message->getMessage()?></p>
                 <div class="interactions">
-                    <div class="repondre">
-                        <button><i class="fa-regular fa-comment"></i> Répondre<input class="hidden" type="text"></button>
-                    </div>
                     <div class="vote">
                         <button><i class="fa-solid fa-up-long"></i></button>
                         <p><?=$message->getNbVote()?></p>
                         <button><i class="fa-solid fa-down-long"></i></button>
                     </div>
+                    <?php
+                    if(App\Session::getVisiteur()){
+                        if(App\Session::isAdmin() || App\Session::getVisiteur()->getId() == $message->getVisiteur()->getId()){ ?>
+                            <div class="supprimer">
+                                <a class="btnSupprimer" href="index.php?ctrl=forum&action=supprimerMessage&id=<?= $message->getId()?>">Supprimer<a>
+                            </div>
+                        <?php 
+                        }
+                    } ?>
                 </div>
             </div>            
         <?php

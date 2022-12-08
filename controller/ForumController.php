@@ -115,11 +115,13 @@
                 Session::addFlash('error','Aucun message');
                 self::redirectTo('forum','listMessages',$sujetId);
             }
-
         }
-            
-            
 
-        
-
+        public function supprimerMessage(){
+            $messageManager = new MessageManager();
+            $messageId=(isset($_GET["id"])) ? $_GET["id"] : null; 
+            $messageManager->delete($messageId);
+            Session::addFlash('success','Message supprimé');
+            self::redirectTo('forum','listCategories');
+        }
     }
