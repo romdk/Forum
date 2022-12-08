@@ -1,2 +1,2 @@
-ajout message uniquement si statut = unlocked
 redirections
+searchbar
