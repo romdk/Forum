@@ -1,13 +1,15 @@
 const boutonPlus = document.getElementById('boutonPlus');
-const champMessage = document.getElementById('champMessage');
-const btnAjouter = document.getElementById('btnAjouter');
+const nouveauSujet = document.getElementById('nouveauSujet')
+
 
 boutonPlus.addEventListener("click",() => {
-    if (champMessage.style.display === "none" && btnAjouter.style.display === "none" ) {
-        champMessage.style.display = "block";
-        btnAjouter.style.display = "block";
+    if (nouveauSujet.style.height === "50px" ) {
+       nouveauSujet.style.height = "210px" 
+       boutonPlus.style.transform = "rotate(45deg)"
+       boutonPlus.style.borderRadius = "50%"
       } else {
-        champMessage.style.display = "none";
-        btnAjouter.style.display = "none";
+        nouveauSujet.style.height = "50px"        
+        boutonPlus.style.transform = "rotate(0deg)"
+        boutonPlus.style.borderRadius = "5px"
       }
 })

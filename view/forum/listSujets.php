@@ -7,7 +7,7 @@ $sujets = $result["data"]['sujets'];
 
 <?php
 if(App\Session::getVisiteur()){ ?>
-    <form class="nouveauSujet" action='index.php?ctrl=forum&action=ajoutSujet&id=<?=$id?>' method='post'>nouveau sujet
+    <form id="nouveauSujet" action='index.php?ctrl=forum&action=ajoutSujet&id=<?=$id?>' method='post'>nouveau sujet
         <input id="champTitre" type="text" name="titre" placeholder="Saisir un titre">
         <i id="boutonPlus" class="fa-solid fa-plus"></i>
         <textarea id="champMessage" type="text" name="1erMessage" placeholder="Saisir un message"></textarea>

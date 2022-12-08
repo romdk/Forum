@@ -435,20 +435,22 @@ nav .titre{
 .infoSujet a:hover{
     color: var(--clr-accent2hover);
 }
-.nouveauSujet{
+#nouveauSujet{
     position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     width: 800px;
-    height: fit-content;
+    height: 50px;
     padding:  10px;
     background-color: var(--clr-background3); 
     border-radius: 5px;
+    overflow: hidden;
+    transition: .4s;
 }
 
-.nouveauSujet #champTitre{
+#nouveauSujet #champTitre{
     margin-left: 20px;
     padding: 0 10px ;
     border-radius: 5px;
@@ -460,8 +462,8 @@ nav .titre{
     color: var(--clr-text3);
 }
 
-.nouveauSujet #champMessage{
-    display: none;
+#nouveauSujet #champMessage{
+    /* display: none; */
     width: 100%;
     height: 100px;
     margin-top: 20px;
@@ -475,8 +477,8 @@ nav .titre{
 
 }
 
-.nouveauSujet #btnAjouter{
-    display: none;
+#nouveauSujet #btnAjouter{
+    /* display: none; */
     margin-top: 10px;
     padding: 5px;
     background-color: var(--clr-accent1);
@@ -488,32 +490,32 @@ nav .titre{
     transition: .2s;
 }
 
-.nouveauSujet #btnAjouter:hover{
+#nouveauSujet #btnAjouter:hover{
     cursor: pointer;
     background-color: var(--clr-accent1hover);
 
 }
 
-.nouveauSujet #champTitre::placeholder {
+#nouveauSujet #champTitre::placeholder {
     color: var(--clr-text1);
     font-weight: 200;
  }
 
-.nouveauSujet #champMessage::placeholder {
+#nouveauSujet #champMessage::placeholder {
     color: var(--clr-text1);
     font-weight: 200;
  }
 
- .nouveauSujet .fa-plus{
+ #nouveauSujet .fa-plus{
     margin-left: 5px;
     background-color: var(--clr-text1);
     padding: 6px;
     border-radius: 5px;
     color: var(--clr-background3);
-    transition: .3s;
+    transition: .4s;
 }
 
-.nouveauSujet .fa-plus:hover{
+#nouveauSujet .fa-plus:hover{
     color: var(--clr-text1);
     background-color: var(--clr-accent1);
     cursor: pointer;
