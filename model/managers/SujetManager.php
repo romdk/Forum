@@ -26,6 +26,18 @@
             );
         }
 
+        public function findSujetById($id) {
+            $sql = "SELECT *
+                    FROM $this->tableName
+                    WHERE id_sujet = :id";
+
+            return $this->getOneOrNullResult(
+                DAO::select($sql,['id' => $id], false),
+                $this->className
+            );
+
+        }
+
         public function lock($id){
             $sql = "UPDATE $this->tableName
                     SET statut = '1'
