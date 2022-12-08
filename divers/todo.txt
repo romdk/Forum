@@ -1,4 +1,3 @@
 ajout message uniquement si statut = unlocked
-moderation: suppr message, bannir utilisateurs
 aff page profil
-vote +- messages
+moderation: bannir utilisateurs
