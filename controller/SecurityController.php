@@ -105,4 +105,20 @@
             Session::unsetVisiteur();
             self::redirectTo('security','pageConnexion',null);
         }
+
+        public function banVisiteur(){
+            $visiteurManager = new VisiteurManager();
+            $visiteurId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $visiteurManager->ban($visiteurId);
+            Session::addFlash('success','Visiteur banni');
+            self::redirectTo('forum','profilVisiteur',$visiteurId);
+        }
+
+        public function unbanVisiteur(){
+            $visiteurManager = new VisiteurManager();
+            $visiteurId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $visiteurManager->unban($visiteurId);
+            Session::addFlash('success','Visiteur débanni');
+            self::redirectTo('forum','profilVisiteur',$visiteurId);
+        }
     }
