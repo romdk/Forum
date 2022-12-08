@@ -1,3 +1,2 @@
 ajout message uniquement si statut = unlocked
-aff page profil
-moderation: bannir utilisateurs
+redirections
