@@ -279,10 +279,14 @@ nav .titre{
     background-color: #1A1C40;
 }
 
-.infosVisiteur span:nth-child(2){
+.listeVisiteurs .infosVisiteur a{
     width: 80%;
     margin-left: 5px;
     color: red
+}
+
+.listeVisiteurs .infosVisiteur a:hover{
+    color: rgb(168, 8, 8)
 }
 
 .infosVisiteur span:nth-child(4){
@@ -306,13 +310,58 @@ nav .titre{
 }
 
 .infosVisiteur span:nth-child(10){
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
     color: #dbdbdb;
+    background-color: #494fbf4f;
 }
 
 .infosVisiteur .contenu{
     font-weight: 200;
 }
 
+/* -----------------------------------PROFIL------------------------------------ */
+.profil .infosVisiteur{
+    position: relative;
+}
+
+.profil span:nth-child(2){
+    width: 80%;
+    margin-left: 5px;
+    color: red
+}
+.profil span:nth-child(10){
+    margin-bottom: 40px;
+}
+
+.profil .btnBannir{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 3px 5px;
+    background-color: #c41818;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+.profil .btnBannir:hover{
+    background-color: #aa2020;
+}
+
+.profil .btnDebannir{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 3px 5px;
+    background-color: #18c426;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+.profil .btnDebannir:hover{
+    background-color: #12921d;
+}
 /* -----------------------------------CATEGORIES------------------------------------ */
 
 .listeCategories{
