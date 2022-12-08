@@ -1,6 +1,7 @@
 <?php
-
+use Model\Managers\SujetManager;
 $messages = $result["data"]['messages'];
+$sujetManager = new SujetManager();
     
 ?>
 
@@ -11,12 +12,14 @@ $messages = $result["data"]['messages'];
 </div>
 
 <?php 
-if(App\Session::getVisiteur()){ ?>
-    <form class="nouveauMessage" action='index.php?ctrl=forum&action=ajoutMessage&id=<?=$id?>' method='post'>nouveau message
-                <textarea class="champMessage" type="text" name="message" placeholder="Saisir un message"></textarea>
-                <input class="btnAjouter" type="submit" name="ajouterMessage" value="Ajouter message">
-    </form>
-<?php } ?>
+if(App\Session::getVisiteur()){ 
+    if($sujetManager->findSujetById($id)->getStatut() == 0){ ?>
+        <form class="nouveauMessage" action='index.php?ctrl=forum&action=ajoutMessage&id=<?=$id?>' method='post'>nouveau message
+                    <textarea class="champMessage" type="text" name="message" placeholder="Saisir un message"></textarea>
+                    <input class="btnAjouter" type="submit" name="ajouterMessage" value="Ajouter message">
+        </form>
+    <?php } 
+} ?>
 
 <div class="listeMessages">
     <?php
