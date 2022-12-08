@@ -415,6 +415,26 @@ nav .titre{
 
 
 /* -----------------------------------SUJETS------------------------------------ */
+.infoSujet{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.infoSujet div{
+    width: 100%;
+}
+.infoSujet .contenu{
+    margin-left: 5px;
+    font-weight: 200;
+}
+
+.infoSujet a{
+    color: var(--clr-accent2);
+}
+
+.infoSujet a:hover{
+    color: var(--clr-accent2hover);
+}
 .nouveauSujet{
     position: relative;
     display: flex;
