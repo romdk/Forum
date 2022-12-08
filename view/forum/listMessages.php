@@ -2,18 +2,28 @@
 use Model\Managers\SujetManager;
 $messages = $result["data"]['messages'];
 $sujetManager = new SujetManager();
+$sujet = $sujetManager->findSujetById($id)
     
 ?>
 
 <div class="infoSujet">
-    <p>Titre du sujet</p>
-    <p>auteur du sujet</p>
-    <p>date de creation du sujet</p>
+    <div>
+        <span class="intitule">Sujet: </span>
+        <span class="contenu"><?php echo $sujet->getTitre() ?></span>
+    </div>
+    <div>
+        <span class="intitule">par: </span>
+        <a class="contenu" href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$sujet->getVisiteur()->getId()?>"><?php echo $sujet->getVisiteur() ?></a>
+    </div>
+    <div>
+        <span class="intitule">crée le: </span>
+        <span class="contenu"><?php echo $sujet->getDateCreation() ?></span>
+    </div>
 </div>
 
 <?php 
 if(App\Session::getVisiteur()){ 
-    if($sujetManager->findSujetById($id)->getStatut() == 0){ ?>
+    if($sujet->getStatut() == 0){ ?>
         <form class="nouveauMessage" action='index.php?ctrl=forum&action=ajoutMessage&id=<?=$id?>' method='post'>nouveau message
                     <textarea class="champMessage" type="text" name="message" placeholder="Saisir un message"></textarea>
                     <input class="btnAjouter" type="submit" name="ajouterMessage" value="Ajouter message">
