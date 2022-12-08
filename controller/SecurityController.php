@@ -88,7 +88,13 @@
                         $visiteur = $visiteurManager->findOneByPseudo($pseudonyme);
                         if (password_verify($motDePasse, $motDePasseHash)) {
                             Session::setVisiteur($visiteur);
-                            header("Location: index.php");
+                            if(Session::getVisiteur()->getStatut() == 1){
+                                Session::unsetVisiteur();
+                                Session::addFlash('error','Compte banni');
+                                self::redirectTo('security','pageConnexion',null);
+                            }else{
+                                header("Location: index.php");
+                            }
                         } else {
                             Session::addFlash('error','Mot de passe incorrect');
                             self::redirectTo('security','pageConnexion',null);
