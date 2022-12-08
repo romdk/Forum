@@ -490,7 +490,7 @@ nav .titre{
     color: rgb(0, 175, 0);
 }
 
-.supprimer{
+.sujet .supprimer{
     position: absolute;
     bottom: 5px;
     right: 5px;
@@ -499,27 +499,20 @@ nav .titre{
     transition: .2s;
 }
 
-.fa-solid{
+.sujet .fa-solid{
 margin-right: 3px;
 transition: .2s;
 }
 
-.statut:hover, .supprimer:hover{
+.sujet .statut:hover, .sujet .supprimer:hover{
     color: #afafaf;
     cursor: pointer;
 }
 
-.statut:hover .fa-solid, .supprimer:hover .fa-solid{
+.sujet .statut:hover .fa-solid, .sujet .supprimer:hover .fa-solid{
     color: #afafaf;
     cursor: pointer;
 }
-
-/* .sujet .message2{
-    background-color: #4449A6;
-    filter: none;
-    width: 100%;
-    
-} */
 
 
 /* -----------------------------------MESSAGES------------------------------------ */
@@ -608,8 +601,10 @@ transition: .2s;
 }
 
 .message2 .role{
+    position: absolute;
+    top: 10px;
+    right: 10px;
     display: flex;
-    /* width: 50%; */
     padding: 0 5px;
     border-radius: 5px;
     background-color: #1A1C40;
@@ -625,6 +620,7 @@ transition: .2s;
 .message2 .texte{
     margin-top: 10px;
     margin-bottom: 10px;
+    min-width: 100%;
     padding: 10px;
     border-radius: 5px;
     background-color: #4449A6;
@@ -635,37 +631,10 @@ transition: .2s;
     width: 100%;
 }
 
-.message2 .repondre{
-    width: 50%;
-}
-
-.repondre .fa-comment{
-    background-color: none;
-    color: #f1f1f1;
-}
-
-.repondre button{
-    background-color: #0F1359;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    text-transform:none;
-    transition: .2s;
-}
-
-.repondre button:hover{
-    background-color: #1A1C40;
-    cursor: pointer;
-}
-
-.repondre input{
-    display: none;
-}
-
 .message2 .vote{
     width: 50%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -690,6 +659,18 @@ transition: .2s;
 .vote .fa-down-long:hover{
     color: #aa2020;
     cursor: pointer;
+}
+
+.message2 .supprimer{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.message2 .btnSupprimer{
+    padding: 3px 5px;
+    background-color: #c41818;
+    border-radius: 5px;
 }
 
 
