@@ -671,6 +671,11 @@ transition: .2s;
     padding: 3px 5px;
     background-color: #c41818;
     border-radius: 5px;
+    transition: .2s;
+}
+
+.message2 .btnSupprimer:hover{
+    background-color: #aa2020;
 }
 
 
