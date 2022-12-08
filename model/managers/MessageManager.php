@@ -46,4 +46,46 @@
 
             return DAO::delete($sql, ['id' => $id]);
         }
+
+        public function upvote($id){
+            if(!isset($_SESSION['vote'][$id])){
+                $sql = "UPDATE $this->tableName
+                        SET nbVote = nbVote+1
+                        WHERE id_".$this->tableName." = :id
+                        ";
+                $_SESSION['vote'][$id] = upvote;
+                return DAO::update($sql, ['id' => $id]);
+            }
+            else if($_SESSION['vote'][$id] == downvote){
+                $sql = "UPDATE $this->tableName
+                        SET nbVote = nbVote+1
+                        WHERE id_".$this->tableName." = :id
+                        ";
+
+                unset($_SESSION['vote'][$id]);
+                return DAO::update($sql, ['id' => $id]);
+            }
+        }
+
+        public function downvote($id){
+            if(!isset($_SESSION['vote'][$id])){
+                $sql = "UPDATE $this->tableName
+                        SET nbVote = nbVote-1
+                        WHERE id_".$this->tableName." = :id
+                        ";
+
+                $_SESSION['vote'][$id] = downvote;
+                return DAO::update($sql, ['id' => $id]);
+            }
+            
+            else if($_SESSION['vote'][$id] == upvote){
+                $sql = "UPDATE $this->tableName
+                        SET nbVote = nbVote-1
+                        WHERE id_".$this->tableName." = :id
+                        ";
+
+                unset($_SESSION['vote'][$id]);
+                return DAO::update($sql, ['id' => $id]);
+            }
+        }
     }

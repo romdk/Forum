@@ -124,4 +124,18 @@
             Session::addFlash('success','Message supprimé');
             self::redirectTo('forum','listCategories');
         }
+
+        public function upvoteMessage(){
+            $messageManager = new MessageManager();
+            $messageId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $messageManager->upvote($messageId);
+            self::redirectTo('forum','listMessages','2');
+        }
+
+        public function downvoteMessage(){
+            $messageManager = new MessageManager();
+            $messageId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $messageManager->downvote($messageId);
+            self::redirectTo('forum','listMessages','2');
+        }
     }
