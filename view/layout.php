@@ -28,9 +28,9 @@
                     <?php
                         
                         if(App\Session::getVisiteur()){
-                            // var_dump(App\Session::getVisiteur()); die;
+                            $idVisiteur = App\Session::getVisiteur()->getId();                            
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getVisiteur()?></a>
+                            <a href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$idVisiteur ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getVisiteur()?></a>
                             <a href="index.php?ctrl=security&action=deconnexion">Déconnexion</a>
                             <?php
                         }

@@ -8,11 +8,23 @@
     use Model\Managers\CategorieManager;
     use Model\Managers\SujetManager;
     use Model\Managers\MessageManager;
+    use Model\Managers\VisiteurManager;
     
     class ForumController extends AbstractController implements ControllerInterface{
 
         
         public function index(){}
+
+        public function profilVisiteur(){     
+            
+            $visiteurManager = new VisiteurManager();
+            $id=(isset($_GET["id"])) ? $_GET["id"] : null;
+
+            return [
+                "view" => VIEW_DIR."forum/profilVisiteur.php",
+            ];
+
+        }
         
         public function listCategories(){
             

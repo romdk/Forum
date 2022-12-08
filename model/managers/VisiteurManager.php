@@ -20,8 +20,16 @@
         return $this->getOneOrNullResult(
           DAO::select($sql,['pseudonyme' => $pseudonyme], false),
           $this->className
-        );
-          
+        );          
+      }
+
+      public function findOneById($id) {
+        $sql = "SELECT * FROM $this->tableName WHERE id_visiteur = :id"; 
+            
+        return $this->getOneOrNullResult(
+          DAO::select($sql,['id' => $id], false),
+          $this->className
+        );          
       }
 
       public function findOneByMail($mail) {
@@ -42,6 +50,24 @@
           $this->className
         );
       }
+
+      public function ban($id){
+        $sql = "UPDATE $this->tableName
+                SET statut = '1'
+                WHERE id_".$this->tableName." = :id
+                ";
+
+        return DAO::update($sql, ['id' => $id]); 
+    }
+
+      public function unban($id){
+        $sql = "UPDATE $this->tableName
+                SET statut = '0'
+                WHERE id_".$this->tableName." = :id
+                ";
+
+        return DAO::update($sql, ['id' => $id]); 
+    }
 
 
     }
