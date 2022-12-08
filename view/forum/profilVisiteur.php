@@ -15,13 +15,15 @@ $visiteur = $visiteurManager->findOneById($id);
                     <span class='intitule'>Mail: </span><span class='contenu'> <?= $visiteur->getMail()?></span>
                     <span class='intitule'>dernier message: </span><span class='contenu'> <?= $messageManager->findLastMessageFromVisiteur($id)?></span>
                     <?php
-                    if($visiteur->getStatut() == 0){ ?>
-                        <a class="btnBannir" href="index.php?ctrl=security&action=banVisiteur&id=<?=$id?>">Bannir</a>
-                    <?php 
-                    } else{ ?>
-                        <a class="btnDebannir" href="index.php?ctrl=security&action=unbanVisiteur&id=<?=$id?>">Débannir</a>
-                    <?php
+                    if(App\Session::isAdmin()){ 
+                        if($visiteur->getStatut() == 0){ ?>
+                            <a class="btnBannir" href="index.php?ctrl=security&action=banVisiteur&id=<?=$id?>">Bannir</a>
+                        <?php 
+                        } else{ ?>
+                            <a class="btnDebannir" href="index.php?ctrl=security&action=unbanVisiteur&id=<?=$id?>">Débannir</a>
+                        <?php
+                        }
                     }
-                    ?>
+                        ?>
                 </div>
             </div>
