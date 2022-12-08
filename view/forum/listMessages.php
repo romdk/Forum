@@ -23,7 +23,7 @@ if(App\Session::getVisiteur()){ ?>
     foreach($messages as $message){
         ?>            
             <div class="message2">
-                <a href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$message->getVisiteur()->getId() ?>" class="pseudo"><?=$message->getVisiteur()->getPseudonyme()?></a>
+                <a class="pseudo" href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$message->getVisiteur()->getId() ?>"><?=$message->getVisiteur()->getPseudonyme()?></a>
                 <p class="role"><?=$message->getVisiteur()->getRole()?></p>
                 <p class="date"><?=$message->getDateCreation()?></p>
                 <p class="texte"><?=$message->getMessage()?></p>
