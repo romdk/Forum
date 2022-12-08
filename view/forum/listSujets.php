@@ -19,11 +19,12 @@ if(App\Session::getVisiteur()){ ?>
     foreach($sujets as $sujet){
 
         ?>
-            <a href="index.php?ctrl=forum&action=listMessages&id=<?= $sujet->getId()?>">
                 <div class="sujet">
-                    <p class="titre"><?=$sujet->getTitre()?></p>
-                    <p class="par">par</p>
-                    <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
+                    <a class="lienSujet" href="index.php?ctrl=forum&action=listMessages&id=<?= $sujet->getId()?>">
+                        <p class="titre"><?=$sujet->getTitre()?></p>
+                        <p class="par">par</p>
+                        <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
+                    </a>
                     <?php
                     if(App\Session::getVisiteur()){
                         if(App\Session::isAdmin() || App\Session::getVisiteur()->getId() == $sujet->getVisiteur()->getId()){
@@ -42,7 +43,6 @@ if(App\Session::getVisiteur()){ ?>
                         <?php }
                     } ?>
                 </div>
-            </a>
         <?php
     }
     ?>

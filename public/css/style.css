@@ -547,6 +547,10 @@ nav .titre{
     background-color: var(--clr-accent1);
 }
 
+.sujet .lienSujet{
+    width: 100%;
+}
+
 .sujet .titre{
     width: 100%;
     font-size: 1.3rem;
