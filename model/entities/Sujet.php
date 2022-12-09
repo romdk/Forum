@@ -7,9 +7,10 @@
 
         private $id;
         private $titre;
+        private $categorie;
         private $visiteur;
         private $dateCreation;
-        private $verrouille;
+        private $statut;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -102,6 +103,15 @@
         {
                 $this->statut = $statut;
 
+                return $this;
+        }
+
+        public function getCategorie(){
+                return $this->categorie;
+        }
+
+        public function setCategorie($categorie){
+                $this->categorie = $categorie;
                 return $this;
         }
     }
