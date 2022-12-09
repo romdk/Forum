@@ -16,34 +16,40 @@ if(App\Session::getVisiteur()){ ?>
 <?php } ?>
 
     <?php
-    foreach($sujets as $sujet){
+    if(isset($sujets)){
+        foreach($sujets as $sujet){
 
-        ?>
-                <div class="sujet">
-                    <a class="lienSujet" href="index.php?ctrl=forum&action=listMessages&id=<?= $sujet->getId()?>">
-                        <p class="titre"><?=$sujet->getTitre()?></p>
-                        <p class="par">par</p>
-                        <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
-                    </a>
-                    <?php
-                    if(App\Session::getVisiteur()){
-                        if(App\Session::isAdmin() || App\Session::getVisiteur()->getId() == $sujet->getVisiteur()->getId()){
-                            if($sujet->getStatut() == 0){ ?>
-                                <a class="statut unlocked" href="index.php?ctrl=forum&action=verrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock-open"></i>Sujet déverrouillé</a>
-                            <?php
-                            }else{ ?>
-                                <a class="statut locked" href="index.php?ctrl=forum&action=deverrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock"></i>Sujet vérouillé</a>
-                            <?php } ?>
-                            <?php
-                        } ?>
+            ?>
+                    <div class="sujet">
+                        <a class="lienSujet" href="index.php?ctrl=forum&action=listMessages&id=<?= $sujet->getId()?>">
+                            <p class="titre"><?=$sujet->getTitre()?></p>
+                            <p class="par">par</p>
+                            <p class="pseudo"><?=$sujet->getVisiteur()->getPseudonyme()?></p>
+                        </a>
                         <?php
-                        if(App\Session::isAdmin()) {
-                        ?>
-                            <a class="supprimer" href="index.php?ctrl=forum&action=supprimerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer<a>
-                        <?php }
-                    } ?>
-                </div>
-        <?php
+                        if(App\Session::getVisiteur()){
+                            if(App\Session::isAdmin() || App\Session::getVisiteur()->getId() == $sujet->getVisiteur()->getId()){
+                                if($sujet->getStatut() == 0){ ?>
+                                    <a class="statut unlocked" href="index.php?ctrl=forum&action=verrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock-open"></i>Sujet déverrouillé</a>
+                                <?php
+                                }else{ ?>
+                                    <a class="statut locked" href="index.php?ctrl=forum&action=deverrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock"></i>Sujet vérouillé</a>
+                                <?php } ?>
+                                <?php
+                            } ?>
+                            <?php
+                            if(App\Session::isAdmin()) {
+                            ?>
+                                <a class="supprimer" href="index.php?ctrl=forum&action=supprimerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer<a>
+                            <?php }
+                        } ?>
+                    </div>
+            <?php
+        }
+    }else{ ?>
+    <p>Aucun sujet</p>
+    
+    <?php
     }
     ?>
 </div>
