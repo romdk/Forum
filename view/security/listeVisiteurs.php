@@ -14,7 +14,15 @@
                 <span class='intitule'>Inscrit le </span><span class='contenu'> <?= $visiteur->getDateInscription()?></span>
                 <span class='intitule'>Role: </span><span class='contenu'> <?= $visiteur->getRole()?></span>
                 <span class='intitule'>Mail: </span><span class='contenu'> <?= $visiteur->getMail()?></span>
-                <span class='intitule'>dernier message: </span><span class='contenu'> <?= $messageManager->findLastMessageFromVisiteur($id)?></span>
+                <span class='intitule'>dernier message: </span>
+                <?php
+                if($messageManager->findLastMessageFromVisiteur($id) !== false){ ?>
+                    <span class='contenu'> <?= $messageManager->findLastMessageFromVisiteur($id)?></span>
+                <?php
+                }else { ?>
+                <span>Aucun message</span>
+                <?php
+                } ?>
             </li>
             <?php
         }
