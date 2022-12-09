@@ -6,6 +6,7 @@ $visiteurManager = new VisiteurManager();
 $messageManager = new MessageManager();
 $id=(isset($_GET["id"])) ? $_GET["id"] : null;
 $visiteur = $visiteurManager->findOneById($id);
+// $activites = $visiteurManager->find5LastActivityFromVisiteur($id)
             ?>
             <div class="profil">
                 <div class='infosVisiteur'>

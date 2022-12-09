@@ -1,5 +1,5 @@
 
-<form class="formulaire" action='index.php?ctrl=security&action=inscription' method='post'>
+<form class="register formulaire" action='index.php?ctrl=security&action=inscription' method='post'>
     <p>Inscription</p>
     <input class="champPseudo" type="text" name="pseudonyme" placeholder="Saisir un pseudonyme">
     <input class="champMail" type="email" name="mail" placeholder="Saisir une adresse email valide">
