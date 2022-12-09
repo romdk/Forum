@@ -27,6 +27,17 @@
             );
         }
 
+        public function findMessageById($id){
+            $sql = "SELECT *
+                    FROM $this->tableName
+                    WHERE id_message = :id";
+
+            return $this->getOneOrNullResult(
+                DAO::select($sql,['id' => $id], false),
+                $this->className
+            );
+        }
+
         public function findLastMessageFromVisiteur($id){
 
             $sql = "SELECT *
