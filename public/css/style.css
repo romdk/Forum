@@ -292,7 +292,8 @@ nav .titre{
 
 
 /* -----------------------------------LISTE VISITEURS------------------------------------ */
-.infosVisiteur{
+.listeVisiteurs .infosVisiteur{
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     margin: 10px;
@@ -301,43 +302,37 @@ nav .titre{
     background-color: var(--clr-background3);
 }
 
+.listeVisiteurs .infosVisiteur div{
+    width: 100%;
+}
+
 .listeVisiteurs .infosVisiteur a{
-    width: 80%;
+    /* width: 80%; */
     margin-left: 5px;
     color: var(--clr-accent2);
     transition: .2s;
+}
+
+.listeVisiteurs .infosVisiteur div:nth-child(2){
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: fit-content;
+}
+
+.listeVisiteurs .infosVisiteur div:nth-child(6){
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--clr-background1);
 }
 
 .listeVisiteurs .infosVisiteur a:hover{
     color: var(--clr-accent1);
 }
 
-.infosVisiteur span:nth-child(4){
-    margin-left: 5px;
-    color: var(--clr-text3);
-}
-
 .infosVisiteur span:nth-child(6){
     margin-left: 5px;
     color: var(--clr-text3);
-}
-
-.infosVisiteur span:nth-child(7){
-    margin-left: 20px;
-}
-
-.infosVisiteur span:nth-child(8){
-    width: 90%;
-    margin-left: 5px;
-    color: var(--clr-text3);
-}
-
-.infosVisiteur span:nth-child(10){
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    color: var(--clr-text3);
-    background-color: var(--clr-background1);
 }
 
 .infosVisiteur .contenu{
@@ -347,15 +342,30 @@ nav .titre{
 /* -----------------------------------PROFIL------------------------------------ */
 .profil .infosVisiteur{
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--clr-background3);
 }
 
-.profil span:nth-child(2){
-    width: 80%;
-    margin-left: 5px;
-    color: var(--clr-accent2)
+.profil .infosVisiteur div{
+    width: 100%;
 }
-.profil span:nth-child(10){
-    margin-bottom: 40px;
+
+.profil .infosVisiteur div:nth-child(2){
+    position: absolute;
+    top: 10px;
+    right: 90px;
+    width: fit-content;
+}
+
+.profil .infosVisiteur div:nth-child(6){
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--clr-background1);
+    margin-bottom: 38px;
 }
 
 .profil form{
@@ -415,6 +425,7 @@ nav .titre{
     padding: 3px 5px;
     background-color: var(--clr-accent2);
     border-radius: 5px;
+    font-size: .9rem;
     transition: .2s;
 }
 
