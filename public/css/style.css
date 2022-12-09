@@ -126,6 +126,59 @@ nav .titre{
     font-weight: 200;
  }
 
+ .searchbar #suggestions{
+    position: absolute;
+    display: none;
+    flex-wrap: wrap;
+    top: 38px;
+    left: 0px;
+    width: 290px;
+    height: fit-content;
+    max-height: 174px;
+    overflow: hidden;
+    background-color: var(--clr-background3);
+    backdrop-filter: blur(5px);
+    border-radius: 0 0 5px 5px;
+}
+
+.searchbar #suggestions li{
+    position: relative;
+    width: 100%;
+    text-align: start;
+    display: none;
+    flex-wrap: wrap;
+    border-bottom: solid 1px var(--clr-background1);
+}
+
+.searchbar #suggestions .suggestion{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.searchbar #suggestions .suggestion .pseudo{
+    width: 100%;
+    color: var(--clr-accent2);
+}
+
+.searchbar #suggestions .suggestion .role{
+    /* width: 100%; */
+    color: var(--clr-text1);
+    font-size: .8rem;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.searchbar #suggestions li a{
+    display: flex;
+    padding: 5px;
+    width: 100%;
+}
+
+.searchbar #suggestions a:hover{
+    background-color: var(--clr-accent1);
+}
+
+
 #nav-left{
     width: 50%;
 }
@@ -211,6 +264,14 @@ nav .titre{
     text-align: center;
     text-transform: uppercase;
     font-weight: 500;
+}
+
+.login{
+    margin-bottom: 210px;
+}
+
+.register{
+    margin-bottom: 100px;
 }
 
 .formulaire{
@@ -848,9 +909,9 @@ footer{
 
 
 .btnRetour{
-    position: absolute;
-    top: 80px;
-    left: 50px;
+    position: fixed;
+    top: 130px;
+    left: 130px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,3 +1,12 @@
+<?php 
+use Model\Managers\SujetManager;
+use Model\Managers\VisiteurManager;
+$sujetManager = new SujetManager();
+$visiteurManager = new VisiteurManager();
+$sujets = $sujetManager->findAll(["titre","ASC"]);
+$visiteurs = $visiteurManager->findAll(["pseudonyme","ASC"]);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +31,25 @@
                         <a class="titre" href="index.php">Forum.</a>
                     </div>
                     <div class='searchbar' >
-                        <input type="text" id="searchBar" onkeyup="affSuggestions()"  placeholder="Rechercher un sujet"><i class="fa-solid fa-magnifying-glass"></i>
-                        
+                        <input type="text" id="searchBar" onkeyup="affSuggestions()"  placeholder="Rechercher un sujet, un utilisateur..."><i class="fa-solid fa-magnifying-glass"></i>
+                        <ul id='suggestions'>
+                        <?php
+                        if(isset($sujets)){
+                            foreach($sujets as $sujet) { ?>
+                                <li class='suggestion'>
+                                    <a href="index.php?ctrl=forum&action=listMessages&id=<?=$sujet->getId()?>"><p><?=$sujet->getTitre()?></p></a>
+                                </li>
+                            <?php }
+                        } ?>  
+                        <?php
+                        if(isset($visiteurs)){
+                            foreach($visiteurs as $visiteur) { ?>
+                                <li class='suggestion'>
+                                    <a href="index.php?ctrl=forum&action=listVisiteurs&id=<?=$visiteur->getId()?>"><p class="pseudo"><?=$visiteur->getPseudonyme()?></p><p class="role"><?=$visiteur->getRole()?></p></a>
+                                </li>
+                            <?php } 
+                        }?>  
+                        </ul>                      
                     </div>
                     <div id="nav-right">
                     <?php
@@ -62,6 +88,7 @@
         </footer>
     </div>
     <script src="public/js/ajoutSujet.js"></script>
+    <script src="public/js/searchbar.js"></script>
     <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

@@ -51,6 +51,20 @@
             ];
 
         }          
+
+        public function listSujetsSearchbar(){     
+            
+            $sujetManager = new SujetManager();
+            $id=(isset($_GET["id"])) ? $_GET["id"] : null;
+
+            return [
+                "view" => VIEW_DIR."layout.php",
+                "data" => [
+                    "sujets" => $sujetManager->findSujetsByCategorie($id)
+                ]
+            ];
+
+        }          
         
         public function listMessages(){
             

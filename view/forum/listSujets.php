@@ -27,7 +27,7 @@ $sujets = $result["data"]['sujets'];
                 if(App\Session::getVisiteur()){
                     if(App\Session::isAdmin() || App\Session::getVisiteur()->getId() == $sujet->getVisiteur()->getId()){
                         if($sujet->getStatut() == 0){ ?>
-                            <a class="statut unlocked" href="index.php?ctrl=forum&action=verrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock-open"></i>Sujet déverrouillé</a>
+                            <a class="statut unlocked" href="index.php?ctrl=forum&action=verrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock-open"></i>Sujet actif</a>
                         <?php
                         }else{ ?>
                             <a class="statut locked" href="index.php?ctrl=forum&action=deverrouillerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-lock"></i>Sujet vérouillé</a>
