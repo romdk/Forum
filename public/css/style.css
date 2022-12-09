@@ -441,6 +441,10 @@ nav .titre{
     align-items: center;
     gap: 20px;
 }
+
+.listeCategories:last-child{
+    margin-bottom: 295px;
+}
 .categorie{
     width: 800px;
     height: fit-content;
@@ -459,6 +463,8 @@ nav .titre{
     font-size: 1.4rem;
     text-transform: uppercase;
 }
+
+
 
 
 /* -----------------------------------SUJETS------------------------------------ */
@@ -569,12 +575,14 @@ nav .titre{
 }
 
 .listeSujets{
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
 }
+
 .sujet{
     position: relative;
     display: flex;
@@ -826,9 +834,6 @@ transition: .2s;
     background-color: var(--clr-accent3hover);
 }
 
-
-
-
 footer{
     /* position: absolute;
     bottom: 0; */
@@ -839,4 +844,34 @@ footer{
     height: 100px;
     margin-top: 100px;
     background-color: var(--clr-background3);
+}
+
+
+.btnRetour{
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--clr-background4);
+    transition: .2s;
+}
+
+.btnRetour:hover{
+    border-radius: 50%;
+    background-color: var(--clr-accent1);
+}
+
+.btnRetour i{
+    font-size: 1.5rem;
+    color: var(--clr-background2);
+    transition: .2s;
+}
+
+.btnRetour:hover i{
+    color: var(--clr-text1);
 }

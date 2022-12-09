@@ -2,10 +2,9 @@
 use Model\Managers\SujetManager;
 $messages = $result["data"]['messages'];
 $sujetManager = new SujetManager();
-$sujet = $sujetManager->findSujetById($id)
-    
+$sujet = $sujetManager->findSujetById($id);    
 ?>
-
+<a class="btnRetour" href="index.php?ctrl=forum&action=listSujets&id=<?=$sujet->getCategorie()->getId() ?>"><i class="fa-solid fa-caret-left"></i></a>
 <div class="infoSujet">
     <div>
         <span class="intitule">Sujet: </span>
