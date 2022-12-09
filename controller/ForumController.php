@@ -90,27 +90,30 @@
         public function supprimerSujet(){
             $sujetManager = new SujetManager();
             $messageManager = new MessageManager();
-            $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null; 
+            $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $categorieId = $sujetManager->findSujetById($sujetId)->getCategorie()->getId();
             $messageManager->deleteAllMessageFromSujet($sujetId);
             $sujetManager->delete($sujetId);
             Session::addFlash('success','Sujet supprimé');
-            self::redirectTo('forum','listCategories');
+            self::redirectTo('forum','listSujets',$categorieId);
         }
 
         public function verrouillerSujet(){
             $sujetManager = new SujetManager();
             $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $categorieId = $sujetManager->findSujetById($sujetId)->getCategorie()->getId();
             $sujetManager->lock($sujetId);
             Session::addFlash('success','Sujet verouillé');
-            self::redirectTo('forum','listCategories');
+            self::redirectTo('forum','listSujets',$categorieId);
         }
 
         public function deverrouillerSujet(){
             $sujetManager = new SujetManager();
             $sujetId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            $categorieId = $sujetManager->findSujetById($sujetId)->getCategorie()->getId();
             $sujetManager->unlock($sujetId);
             Session::addFlash('success','Sujet déverrouillé');
-            self::redirectTo('forum','listCategories');
+            self::redirectTo('forum','listSujets',$categorieId);
         }
 
         public function ajoutMessage(){
@@ -132,22 +135,25 @@
         public function supprimerMessage(){
             $messageManager = new MessageManager();
             $messageId=(isset($_GET["id"])) ? $_GET["id"] : null; 
+            $sujetId = $messageManager->findMessageById($messageId)->getSujet()->getId();
             $messageManager->delete($messageId);
             Session::addFlash('success','Message supprimé');
-            self::redirectTo('forum','listCategories');
+            self::redirectTo('forum','listMessages',$sujetId);
         }
 
         public function upvoteMessage(){
             $messageManager = new MessageManager();
             $messageId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $messageManager->upvote($messageId);
-            self::redirectTo('forum','listMessages','2');
+            $sujetId = $messageManager->findMessageById($messageId)->getSujet()->getId();
+            self::redirectTo('forum','listMessages',$sujetId);
         }
 
         public function downvoteMessage(){
             $messageManager = new MessageManager();
             $messageId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $messageManager->downvote($messageId);
-            self::redirectTo('forum','listMessages','2');
+            $sujetId = $messageManager->findMessageById($messageId)->getSujet()->getId();
+            self::redirectTo('forum','listMessages',$sujetId);
         }
     }
