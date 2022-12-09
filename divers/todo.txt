@@ -1,2 +1,2 @@
-redirections
+admin ajout categorie
 searchbar
