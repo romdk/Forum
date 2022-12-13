@@ -107,6 +107,15 @@
                 return $this;
         }
 
+        public function getImage(){
+                return $this->image;
+        }
+
+        public function setImage($image){
+                $this->image = $image;
+                return $this;
+        }
+
         public function __toString() {
                 return $this->pseudonyme;
         }
