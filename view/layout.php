@@ -43,9 +43,11 @@ $visiteurs = $visiteurManager->findAll(["pseudonyme","ASC"]);
                         } ?>  
                         <?php
                         if(isset($visiteurs)){
-                            foreach($visiteurs as $visiteur) { ?>
+                            foreach($visiteurs as $visiteur) { 
+                                $imageVisiteur = $visiteur->getImage(); ?>
+                            
                                 <li class='suggestion'>
-                                    <a href="index.php?ctrl=forum&action=listVisiteurs&id=<?=$visiteur->getId()?>"><p class="pseudo"><?=$visiteur->getPseudonyme()?></p><p class="role"><?=$visiteur->getRole()?></p></a>
+                                    <a href="index.php?ctrl=forum&action=listVisiteurs&id=<?=$visiteur->getId()?>"><span class="imageProfil"><img src="public/images/<?=$imageVisiteur?>" alt=""></span><span class="pseudo"><?=$visiteur->getPseudonyme()?></span><span class="role"><?=$visiteur->getRole()?></span></a>
                                 </li>
                             <?php } 
                         }?>  
@@ -55,9 +57,11 @@ $visiteurs = $visiteurManager->findAll(["pseudonyme","ASC"]);
                     <?php
                         
                         if(App\Session::getVisiteur()){
-                            $idVisiteur = App\Session::getVisiteur()->getId();                            
+                            $idVisiteur = App\Session::getVisiteur()->getId();    
+                            $imageVisiteur = App\Session::getVisiteur()->getImage();
+                            // var_dump($imageVisiteur); die;                        
                             ?>
-                            <a href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$idVisiteur ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getVisiteur()?></a>
+                            <a href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$idVisiteur ?>"><div class="imageProfil"><img src="public/images/<?=$imageVisiteur?>" alt=""></div><?= App\Session::getVisiteur()?></a>
                             <a href="index.php?ctrl=security&action=deconnexion">Déconnexion</a>
                             <?php
                         }
