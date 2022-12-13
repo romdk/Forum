@@ -155,6 +155,21 @@ nav .titre{
     flex-wrap: wrap;
 }
 
+.searchbar #suggestions .suggestion .imageProfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.searchbar #suggestions .suggestion .imageProfil img{
+    height: 30px;
+}
+
 .searchbar #suggestions .suggestion .pseudo{
     width: 100%;
     color: var(--clr-accent2);
@@ -205,6 +220,9 @@ nav .titre{
 
 
 #nav-right a{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     color: var(--clr-background2);
     transition: .2s;
 }
@@ -220,6 +238,22 @@ nav .titre{
 
 #nav-right a:hover span{
     color: var(--clr-accent1);
+}
+
+#nav-right .imageProfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+#nav-right .imageProfil img{
+    height: 30px;
 }
 
 #utilisateurs {
@@ -401,12 +435,19 @@ nav .titre{
 }
 
 /* -----------------------------------PROFIL------------------------------------ */
+.profil{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 800px;
+}
 .profil .infosVisiteur{
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    margin: 10px;
-    padding: 10px;
+    width: 100%;
+    padding: 20px;
     border-radius: 5px;
     background-color: var(--clr-background3);
 }
@@ -429,7 +470,7 @@ nav .titre{
     margin-bottom: 38px;
 }
 
-.profil form{
+.profil .formRole{
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -449,7 +490,7 @@ nav .titre{
     cursor: pointer;
 }
 
-.profil .btnValider{
+.profil .formRole .btnValider{
     background-color: var(--clr-accent2);
     border: none;
     padding: 3px 5px;
@@ -458,7 +499,7 @@ nav .titre{
     transition: .2s;
 }
 
-.profil .btnValider:hover{
+.profil .formRole .btnValider:hover{
     background-color: var(--clr-accent2hover);
     cursor: pointer;
     
@@ -493,14 +534,131 @@ nav .titre{
 .profil .btnDebannir:hover{
     background-color: var(--clr-accent2hover);
 }
+
+.profil  .modifProfil{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: var(--clr-background3);
+}
+
+.profil .modifProfil .formModif{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.profil .modifProfil .champPseudo{
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--clr-background2);
+    border: none;
+    outline: none;
+}
+
+.profil .modifProfil .champMail{
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--clr-background2);
+    border: none;
+    outline: none;
+}
+
+.profil .modifProfil .champImage{
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--clr-background2);
+    border: none;
+    outline: none;
+}
+
+.profil .modifProfil .btnValider{
+    width: 30%;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: var(--clr-accent2);
+    border: none;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+.profil .modifProfil .btnValider:hover{
+    background-color: var(--clr-accent2hover);   
+    cursor: pointer; 
+}
+
+
 /* -----------------------------------CATEGORIES------------------------------------ */
+#nouvelleCategorie{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+    height: 50px;
+    padding:  10px;
+    background-color: var(--clr-background3); 
+    border-radius: 5px;
+    overflow: hidden;
+    transition: .4s;
+}
+
+#nouvelleCategorie #champCategorie{
+    margin-left: 20px;
+    margin-right: 140px;
+    padding: 0 10px ;
+    border-radius: 5px;
+    width: 60%;
+    height: 30px;
+    background-color: var(--clr-textarea2);
+    border: none;
+    outline: none;
+    color: var(--clr-text3);
+}
+
+#nouvelleCategorie #btnAjouter{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 5px;
+    background-color: var(--clr-accent1);
+    border-radius: 0 5px 5px 0;
+    width: 20%;
+    vertical-align: middle;
+    line-height: 20px;
+    border: none;
+    transition: .2s;
+}
+
+#nouvelleCategorie #btnAjouter:hover{
+    cursor: pointer;
+    background-color: var(--clr-accent1hover);
+
+}
+
+#nouvelleCategorie #champTitre::placeholder {
+    color: var(--clr-text1);
+    font-weight: 200;
+ }
 
 .listeCategories{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
 }
 
 .listeCategories:last-child{
@@ -524,6 +682,30 @@ nav .titre{
     font-size: 1.4rem;
     text-transform: uppercase;
 }
+
+.categorie .supprimer{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: .8rem;
+    font-weight: 200;
+    transition: .2s;
+}
+
+.categorie .fa-solid{
+    margin-right: 3px;
+    transition: .2s;
+    }
+    
+    .categorie .statut:hover, .categorie .supprimer:hover{
+        color: var(--clr-text2);
+        cursor: pointer;
+    }
+    
+    .categorie .statut:hover .fa-solid, .categorie .supprimer:hover .fa-solid{
+        color: var(--clr-text2);
+        cursor: pointer;
+    }
 
 
 
@@ -804,6 +986,21 @@ transition: .2s;
     background-color: var(--clr-background3);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: .2s;
+}
+
+.message2 .imageProfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.message2 .imageProfil img{
+    height: 30px;
 }
 
 .message2 .pseudo{
