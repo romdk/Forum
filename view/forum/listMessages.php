@@ -34,10 +34,14 @@ if(App\Session::getVisiteur()){
     <?php
     if(isset($messages)){
         foreach($messages as $message){
+            $idVisiteur = $message->getVisiteur()->getId();
+            $pseudoVisiteur = $message->getVisiteur()->getPseudonyme();
+            $roleVisiteur = $message->getVisiteur()->getRole();
+            $imageVisiteur = $message->getVisiteur()->getImage();
             ?>            
                 <div class="message2">
-                    <a class="pseudo" href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$message->getVisiteur()->getId() ?>"><?=$message->getVisiteur()->getPseudonyme()?></a>
-                    <p class="role"><?=$message->getVisiteur()->getRole()?></p>
+                    <a class="pseudo" href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$idVisiteur ?>"><span class="imageProfil"><img src="public/images/<?=$imageVisiteur?>" alt=""></span><?=$pseudoVisiteur?></a>
+                    <p class="role"><?=$roleVisiteur?></p>
                     <p class="date"><?=$message->getDateCreation()?></p>
                     <p class="texte"><?=$message->getMessage()?></p>
                     <div class="interactions">
