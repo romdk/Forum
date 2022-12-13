@@ -37,6 +37,21 @@
                     ]
                 ];
             }
+            
+        public function ajoutCategorie(){
+            $categorieManager = new CategorieManager();
+            $nomCategorie = filter_input(INPUT_POST,'nomCategorie',FILTER_SANITIZE_SPECIAL_CHARS);
+
+            if($nomCategorie){            
+                $dataCategorie = ['nomCategorie' => $nomCategorie];
+                $categorieManager->add($dataCategorie);
+                Session::addFlash('success','Catégorie créé');
+                self::redirectTo('forum','listCategories');
+            }else {
+                Session::addFlash('error','Champ vide');
+                self::redirectTo('forum','listCategories');
+            }
+        }
 
         public function listSujets(){     
             
@@ -80,14 +95,12 @@
                 ];
                 
             }
-
         public function ajoutSujet(){
             $sujetManager = new SujetManager();
             $messageManager = new MessageManager();
             $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
             $titre = filter_input(INPUT_POST,'titre',FILTER_SANITIZE_SPECIAL_CHARS);
             $message = filter_input(INPUT_POST,'1erMessage',FILTER_SANITIZE_SPECIAL_CHARS);
-            // var_dump(Session::getVisiteur()); die;
 
             if($titre && $message){            
                 $dataSujet = ['visiteur_id' => Session::getVisiteur()->getId(), 'categorie_id' => $categorieId, 'titre' => $titre];
@@ -101,6 +114,18 @@
             }
         }
 
+        public function supprimerCategorie(){
+            $categorieManager = new CategorieManager();
+            $sujetManager = new SujetManager();
+            $messageManager = new MessageManager();
+            $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
+            // $sujetId = $sujetManager->findSujetsByCategorie($categorieId)->getId();
+            $messageManager->deleteAllMessageFromSujet($sujetId);
+            $sujetManager->delete($sujetId);    
+            $categorieManager->delete($categorieId);
+            Session::addFlash('success','categorie supprimé');
+            self::redirectTo('forum','listCategories');
+        }
         public function supprimerSujet(){
             $sujetManager = new SujetManager();
             $messageManager = new MessageManager();
