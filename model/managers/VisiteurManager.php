@@ -59,6 +59,30 @@
       return DAO::update($sql, ['id' => $id]);
     }
 
+    public function changerPseudo($id,$pseudo){
+      $sql = "UPDATE $this->tableName
+              SET pseudonyme = '$pseudo'
+              WHERE id_".$this->tableName." = :id
+              ";
+      return DAO::update($sql, ['id' => $id]);
+    }
+
+    public function changerMail($id,$mail){
+      $sql = "UPDATE $this->tableName
+              SET mail = '$mail'
+              WHERE id_".$this->tableName." = :id
+              ";
+      return DAO::update($sql, ['id' => $id]);
+    }
+
+    public function changerImage($id,$image){
+      $sql = "UPDATE $this->tableName
+              SET image = '$image'
+              WHERE id_".$this->tableName." = :id
+              ";
+      return DAO::update($sql, ['id' => $id]);
+    }
+
     public function ban($id){
       $sql = "UPDATE $this->tableName
               SET statut = '1'
