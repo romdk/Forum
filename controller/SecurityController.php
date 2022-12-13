@@ -99,7 +99,10 @@
                             Session::addFlash('error','Mot de passe incorrect');
                             self::redirectTo('security','pageConnexion',null);
                         }
-                    }
+                    }else{
+                        Session::addFlash('error',"Ce compte n'existe pas");
+                        self::redirectTo('security','pageConnexion',null);
+                    }   
                 } else {
                 Session::addFlash('error','Champ manquant');
                 self::redirectTo('security','pageConnexion',null);
@@ -122,6 +125,27 @@
                 self::redirectTo('forum','profilVisiteur',$visiteurId);
             }
 
+        }
+
+        public function modifierProfil(){
+            $visiteurManager = new VisiteurManager();   
+            if(isset($_POST['validerChangement'])){
+                $pseudo = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
+                $mail = filter_input(INPUT_POST,'mail',FILTER_VALIDATE_EMAIL);
+                $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_SPECIAL_CHARS);
+                $visiteurId=(isset($_GET["id"])) ? $_GET["id"] : null;
+                if($pseudo){
+                    $visiteurManager->changerPseudo($visiteurId,$pseudo);
+                }
+                if($mail){
+                    $visiteurManager->changerMail($visiteurId,$mail);                    
+                }
+                if($image){
+                    $visiteurManager->changerImage($visiteurId,$image);
+                }
+                Session::addFlash('success','Modification réussie');
+                self::redirectTo('forum','profilVisiteur',$visiteurId);
+            }
         }
 
         public function banVisiteur(){
