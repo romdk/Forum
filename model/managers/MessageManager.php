@@ -50,6 +50,19 @@
              );
         }
 
+        public function findLast5MessageFromVisiteur($id){
+
+            $sql = "SELECT *
+                    FROM $this->tableName
+                    WHERE visiteur_id = :id
+                    ORDER BY dateCreation DESC LIMIT 5";
+
+            return $this->getMultipleResults(
+                DAO::select($sql,['id' => $id]),
+                $this->className
+            );
+        }
+
         public function deleteAllMessageFromSujet($id){
             $sql = "DELETE FROM ".$this->tableName."
                     WHERE sujet_id = :id
