@@ -61,8 +61,8 @@ $visiteurs = $visiteurManager->findAll(["pseudonyme","ASC"]);
                             $imageVisiteur = App\Session::getVisiteur()->getImage();
                             // var_dump($imageVisiteur); die;                        
                             ?>
-                            <a href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$idVisiteur ?>"><div class="imageProfil"><img src="public/images/<?=$imageVisiteur?>" alt=""></div><?= App\Session::getVisiteur()?></a>
-                            <a href="index.php?ctrl=security&action=deconnexion">Déconnexion</a>
+                            <a href="index.php?ctrl=forum&action=profilVisiteur&id=<?=$idVisiteur ?>"><div class="imageProfil"><img src="public/images/<?=$imageVisiteur?>" alt=""></div><div class="pseudonyme"><?= App\Session::getVisiteur()?></div></a>
+                            <a class="deconnexion" href="index.php?ctrl=security&action=deconnexion">Déconnexion</a>
                             <?php
                         }
                         else{

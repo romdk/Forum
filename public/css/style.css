@@ -61,15 +61,21 @@ body::-webkit-scrollbar{
     padding-top: 100px;
 }
 
+#wrapper #mainpage{
+    position: relative;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+}
+
 a {
     color: var(--clr-text1);
     text-decoration: none;
   }
 
 nav{
-    position: fixed;
+    position:fixed;
     top: 30px;
-    left: 95px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,8 +96,10 @@ nav .titre{
     position: relative;
     background-color: var(--clr-textarea1);
     border-radius: 5px;
-    width: 350px;
+    width: 30%;
+    max-width: 350px;
     height: 40px;
+    overflow: hidden;
 }
 
 .searchbar input{
@@ -256,10 +264,22 @@ nav .titre{
     height: 30px;
 }
 
+#nav-right .pseudonyme{
+    color: var(--clr-background2);
+}
+
 #utilisateurs {
     position: absolute;
     bottom: 0;
     font-size: .7rem;
+}
+
+#forum{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 /* -----------------------------------HOME------------------------------------ */
@@ -268,9 +288,6 @@ nav .titre{
 }
 
 #home #entrer{
-    /* position: absolute; */
-    /* top: 600px;
-    left: 45%; */
     margin-top: 200px;
     margin-bottom: 140px;
     text-align: center;
@@ -302,6 +319,8 @@ nav .titre{
 
 .login{
     margin-bottom: 210px;
+    display: flex;
+
 }
 
 .register{
@@ -348,7 +367,6 @@ nav .titre{
     background-color: var(--clr-textarea1);
     outline: none;
     color: #1d1d1d;
-    /* margin: 10px 30px; */
 }
 
 .formulaire input:nth-child(2){
@@ -402,7 +420,6 @@ nav .titre{
 }
 
 .listeVisiteurs .infosVisiteur a{
-    /* width: 80%; */
     margin-left: 5px;
     color: var(--clr-accent2);
     transition: .2s;
@@ -649,32 +666,33 @@ nav .titre{
 #nouvelleCategorie #btnAjouter:hover{
     cursor: pointer;
     background-color: var(--clr-accent1hover);
-
+    
 }
 
 #nouvelleCategorie #champTitre::placeholder {
     color: var(--clr-text1);
     font-weight: 200;
- }
+}
 
 .listeCategories{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .listeCategories:last-child{
     margin-bottom: 295px;
 }
 .categorie{
+    position: relative;
     width: 800px;
     height: fit-content;
+    margin-top: 5px;
     padding: 10px;
     border-radius: 5px;
     background-color: var(--clr-background3);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: .2s;
 }
 
@@ -822,12 +840,11 @@ nav .titre{
 }
 
 .listeSujets{
-    /* position: relative; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .sujet{
@@ -838,10 +855,10 @@ nav .titre{
     align-items: flex-start;
     width: 800px;
     height: fit-content;
+    margin-top: 5px;
     padding: 10px;
     border-radius: 5px;
     background-color: var(--clr-background3);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: .2s;
 }
 
@@ -916,10 +933,11 @@ transition: .2s;
 .infoSujet{
     background-color: var(--clr-background3);
     height: 100px;
-    width: 800px;
+    max-width: 800px;
+    width: 88%;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .nouveauMessage{
@@ -928,7 +946,8 @@ transition: .2s;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 800px;
+    width: 88%;
+    max-width: 800px;
     height: fit-content;
     padding:  10px;
     background-color: var(--clr-background3); 
@@ -977,19 +996,20 @@ transition: .2s;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-top: 20px;
+    max-width: 800px;
 }
 .message2{
     display: flex;
     flex-wrap: wrap;
-    width: 800px;
+    max-width: 800px;
+    width: 88%;
     height: fit-content;
     padding: 10px;
     border-radius: 5px;
     background-color: var(--clr-background3);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: .2s;
+    margin-top: 10px;
 }
 
 .message2 .imageProfil{
@@ -1136,4 +1156,17 @@ footer{
 
 .btnRetour:hover i{
     color: var(--clr-text1);
+}
+
+/* -----------------------------------RESPONSIVE------------------------------------ */
+
+@media screen and (max-width: 850px ){
+    #nav-right .pseudonyme{
+        display: none;
+    }
+    #nav-right .deconnexion{
+        display: none;
+    }
+
+
 }

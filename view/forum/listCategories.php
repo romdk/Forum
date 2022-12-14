@@ -13,18 +13,18 @@ $categories = $result["data"]['categories'];
     <?php 
     } 
 
-    foreach($categories as $categorie){
-
-        ?>
-            <div class="categorie">
-                <a href="index.php?ctrl=forum&action=listSujets&id=<?= $categorie->getId()?>">
-                <p class="nomCategorie"><?=$categorie->getNomCategorie()?></p></a>
+    foreach($categories as $categorie){ ?>
+        <div class="categorie">
+            <a href="index.php?ctrl=forum&action=listSujets&id=<?= $categorie->getId()?>">
+                <p class="nomCategorie"><?=$categorie->getNomCategorie()?></p>
+            </a>
+            <?php
+            if(App\Session::isAdmin()) {
+            ?>
+                <a class="supprimer" href="index.php?ctrl=forum&action=supprimerCategorie&id=<?= $categorie->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer</a>
                 <?php
-                    if(App\Session::isAdmin()) {
-                    ?>
-                        <a class="supprimer" href="index.php?ctrl=forum&action=supprimerCategorie&id=<?= $categorie->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer<a>
-                    <?php } ?>
-            </div>
+            } ?>
+        </div>
         <?php
     }
     ?>

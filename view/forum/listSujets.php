@@ -37,7 +37,7 @@ $sujets = $result["data"]['sujets'];
                     <?php
                     if(App\Session::isAdmin()) {
                     ?>
-                        <a class="supprimer" href="index.php?ctrl=forum&action=supprimerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer<a>
+                        <a class="supprimer" href="index.php?ctrl=forum&action=supprimerSujet&id=<?= $sujet->getId()?>"><i class="fa-solid fa-trash"></i>Supprimer</a>
                     <?php }
                 } ?>
             </div>
