@@ -130,22 +130,48 @@
         public function modifierProfil(){
             $visiteurManager = new VisiteurManager();   
             if(isset($_POST['validerChangement'])){
+                $visiteurId=(isset($_GET["id"])) ? $_GET["id"] : null;
                 $pseudo = filter_input(INPUT_POST,'pseudonyme',FILTER_SANITIZE_SPECIAL_CHARS);
                 $mail = filter_input(INPUT_POST,'mail',FILTER_VALIDATE_EMAIL);
-                $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_SPECIAL_CHARS);
-                $visiteurId=(isset($_GET["id"])) ? $_GET["id"] : null;
-                if($pseudo){
-                    $visiteurManager->changerPseudo($visiteurId,$pseudo);
+                $maxsize = 100000;
+                $validExt = array('.jpg','.jpeg','.gif','.png');
+                if($_FILES['image']['error'] > 0){
+                    Session::addFlash('error','erreur fichier');
+                    self::redirectTo('forum','profilVisiteur',$id);
                 }
-                if($mail){
-                    $visiteurManager->changerMail($visiteurId,$mail);                    
+                
+                $fileSize = $_FILES['image']['size'];
+                
+                if($fileSize > $maxsize){
+                    Session::addFlash('error','Fichier trop volumineux');
+                    self::redirectTo('forum','profilVisiteur',$id);
                 }
-                if($image){
-                    $visiteurManager->changerImage($visiteurId,$image);
+                $fileName = $_FILES['image']['name'];
+                $fileExt = ".".strtolower(substr(strrchr($fileName,'.'),1));
+                
+                if(!in_array($fileExt,$validExt)){
+                    Session::addFlash('error','Format incorrect');
+                    self::redirectTo('forum','profilVisiteur',$id);                
                 }
-                Session::addFlash('success','Modification réussie');
-                self::redirectTo('forum','profilVisiteur',$visiteurId);
+                
+                $tmpName = $_FILES['image']['tmp_name'];
+                $uniqueName = md5(uniqid(rand(),true));
+                $fileName = "public/images/".$uniqueName.$fileExt;
+                $resultat = move_uploaded_file($tmpName, $fileName);                
+                $image = $uniqueName.$fileExt;
             }
+
+            if($pseudo){
+                $visiteurManager->changerPseudo($visiteurId,$pseudo);
+            }
+            if($mail){
+                $visiteurManager->changerMail($visiteurId,$mail);                    
+            }
+            if($image){
+                $visiteurManager->changerImage($visiteurId,$image);
+            }
+            Session::addFlash('success','Modification réussie');
+            self::redirectTo('forum','profilVisiteur',$visiteurId);
         }
 
         public function banVisiteur(){
