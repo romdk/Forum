@@ -464,10 +464,14 @@ nav .titre{
 }
 
 .profil .infosVisiteur div:nth-child(6){
+    margin-bottom: 38px;
+}
+
+.profil .infosVisiteur div:nth-child(6) p{
+    margin-top: 10px;
     padding: 5px;
     border-radius: 5px;
     background-color: var(--clr-background1);
-    margin-bottom: 38px;
 }
 
 .profil .formRole{
