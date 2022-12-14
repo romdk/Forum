@@ -1,2 +1,1 @@
-profil-> derniere activité
-upload image dans dossier public->images
+responsive
