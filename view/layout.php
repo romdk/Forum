@@ -67,8 +67,8 @@ $visiteurs = $visiteurManager->findAll(["pseudonyme","ASC"]);
                         }
                         else{
                             ?>
-                            <a href="index.php?ctrl=security&action=pageConnexion">Connexion</a>
-                            <a href="index.php?ctrl=security&action=pageInscription">Inscription</a>
+                            <a class="connexion" href="index.php?ctrl=security&action=pageConnexion">Connexion</a>
+                            <a class="inscription" href="index.php?ctrl=security&action=pageInscription">Inscription</a>
                         <?php
                         }
                         if(App\Session::isAdmin()){
@@ -78,8 +78,43 @@ $visiteurs = $visiteurManager->findAll(["pseudonyme","ASC"]);
                             <?php
                         }
                         ?>
+                        <div><?php
+                            if(App\Session::getVisiteur()){?>
+                                <img class="imageUtilisateur" src="public/images/<?=$imageVisiteur?>" alt="">
+                                <?php
+                            } else{?>
+                                <img class="imageUtilisateur" src="public/images/default.png" alt="">
+                                <?php
+                            }
+                            ?>
+                        </div>
                     </div>
                 </nav>
+                <div class="overlay">
+                    <div class='searchbarMobile' >
+                        <input type="text" id="searchBarMobile" onkeyup="affSuggestions()"  placeholder="Rechercher un sujet, un utilisateur...">
+                        <ul id='suggestionsMobile'>
+                        <?php
+                        if(isset($sujets)){
+                            foreach($sujets as $sujet) { ?>
+                                <li class='suggestionMobile'>
+                                    <a href="index.php?ctrl=forum&action=listMessages&id=<?=$sujet->getId()?>"><p><?=$sujet->getTitre()?></p></a>
+                                </li>
+                            <?php }
+                        } ?>  
+                        <?php
+                        if(isset($visiteurs)){
+                            foreach($visiteurs as $visiteur) { 
+                                $imageVisiteur = $visiteur->getImage(); ?>
+                            
+                                <li class='suggestionMobile'>
+                                    <a href="index.php?ctrl=forum&action=listVisiteurs&id=<?=$visiteur->getId()?>"><span class="imageProfil"><img src="public/images/<?=$imageVisiteur?>" alt=""></span><span class="pseudo"><?=$visiteur->getPseudonyme()?></span><span class="role"><?=$visiteur->getRole()?></span></a>
+                                </li>
+                            <?php } 
+                        }?>  
+                        </ul>                      
+                    </div>
+                </div>
             </header>
             
             <main id="forum">

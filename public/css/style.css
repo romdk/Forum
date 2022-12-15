@@ -31,11 +31,16 @@
 
 
 body{
-    background-color: var(--clr-background1);
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--clr-background1);
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    scr
 }
 
 body::-webkit-scrollbar{
@@ -97,6 +102,7 @@ nav .titre{
     background-color: var(--clr-textarea1);
     border-radius: 5px;
     width: 30%;
+    min-width: 250px;
     max-width: 350px;
     height: 40px;
     overflow: hidden;
@@ -264,6 +270,14 @@ nav .titre{
     height: 30px;
 }
 
+#nav-right .imageUtilisateur{
+   display: none;
+}
+
+#nav-right .imageUtilisateur img{
+    display: none;
+}
+
 #nav-right .pseudonyme{
     color: var(--clr-background2);
 }
@@ -274,12 +288,121 @@ nav .titre{
     font-size: .7rem;
 }
 
+.overlay{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.searchbarMobile{
+    margin: 0 5px;
+    position: fixed;
+    background-color: var(--clr-text1);
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+}
+
+.searchbarMobile input{
+    background-color: var(--clr-text1);
+    width: 250px;    
+    padding: 9px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: var(--clr-text2);
+}
+
+.searchbarMobile input::placeholder {
+    color: var(--clr-text2);
+    font-weight: 300;
+    text-align: center;
+    line-height: 15px;
+ }
+
+ .searchbarMobile #suggestionsMobile{
+    position: absolute;
+    display: none;
+    flex-wrap: wrap;
+    top: 38px;
+    left: 0px;
+    width: 290px;
+    height: fit-content;
+    max-height: 174px;
+    overflow: hidden;
+    background-color: var(--clr-background3);
+    backdrop-filter: blur(5px);
+    border-radius: 0 0 5px 5px;
+}
+
+.searchbarMobile #suggestionsMobile li{
+    position: relative;
+    width: 100%;
+    text-align: start;
+    display: none;
+    flex-wrap: wrap;
+    border-bottom: solid 1px var(--clr-background1);
+}
+
+.searchbarMobile #suggestionsMobile .suggestionMobile{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.searchbarMobile #suggestionsMobile .suggestionMobile .imageProfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.searchbarMobile #suggestionsMobile .suggestionMobile .imageProfil img{
+    height: 30px;
+}
+
+.searchbarMobile #suggestionsMobile .suggestionMobile .pseudo{
+    width: 100%;
+    color: var(--clr-accent2);
+}
+
+.searchbarMobile #suggestionsMobile .suggestionMobile .role{
+    /* width: 100%; */
+    color: var(--clr-text1);
+    font-size: .8rem;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.searchbarMobile #suggestionsMobile li a{
+    display: flex;
+    padding: 5px;
+    width: 100%;
+}
+
+.searchbarMobile #suggestionsMobile a:hover{
+    background-color: var(--clr-accent1);
+}
+
 #forum{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.contenuPage{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-width: 40%;
+    max-width: 800px;
+    padding: 5px;
 }
 
 /* -----------------------------------HOME------------------------------------ */
@@ -759,7 +882,7 @@ nav .titre{
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 800px;
+    width: 100%;
     height: 50px;
     padding:  10px;
     background-color: var(--clr-background3); 
@@ -768,7 +891,16 @@ nav .titre{
     transition: .4s;
 }
 
+#nouveauSujet span{
+    position: absolute;
+    top: 13px;
+    left: 10px;
+}
+
 #nouveauSujet #champTitre{
+    position: absolute;
+    top: 10px;
+    right: 17px;
     margin-left: 20px;
     padding: 0 10px ;
     border-radius: 5px;
@@ -784,7 +916,7 @@ nav .titre{
     /* display: none; */
     width: 100%;
     height: 100px;
-    margin-top: 20px;
+    margin-top: 50px;
     padding: 10px ;
     border-radius: 5px;
     background-color: var(--clr-textarea2);
@@ -802,6 +934,7 @@ nav .titre{
     background-color: var(--clr-accent1);
     border-radius: 5px;
     width: 20%;
+    min-width: 80px;
     vertical-align: middle;
     line-height: 20px;
     border: none;
@@ -825,7 +958,14 @@ nav .titre{
  }
 
  #nouveauSujet .fa-plus{
-    margin-left: 5px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 10px;
+    right: 10px;
+    height: 30px;
+    width: 30px;
     background-color: var(--clr-text1);
     padding: 6px;
     border-radius: 5px;
@@ -853,7 +993,7 @@ nav .titre{
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 800px;
+    width: 100%;
     height: fit-content;
     margin-top: 5px;
     padding: 10px;
@@ -933,8 +1073,7 @@ transition: .2s;
 .infoSujet{
     background-color: var(--clr-background3);
     height: 100px;
-    max-width: 800px;
-    width: 88%;
+    width: 100%;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
@@ -946,8 +1085,7 @@ transition: .2s;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 88%;
-    max-width: 800px;
+    width: 100%;
     height: fit-content;
     padding:  10px;
     background-color: var(--clr-background3); 
@@ -996,13 +1134,12 @@ transition: .2s;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 800px;
+    width: 100%;
 }
 .message2{
     display: flex;
     flex-wrap: wrap;
-    max-width: 800px;
-    width: 88%;
+    width: 100%;
     height: fit-content;
     padding: 10px;
     border-radius: 5px;
@@ -1160,13 +1297,108 @@ footer{
 
 /* -----------------------------------RESPONSIVE------------------------------------ */
 
-@media screen and (max-width: 850px ){
+@media screen and (max-width: 1130px ){
+    .btnRetour{
+        display: none;
+    }
+
+
+}
+
+@media screen and (max-width: 890px ){
+    #wrapper{
+        border-radius: 0px;
+        width: 100vw;
+        height: 100vh;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 60px;
+    }
+
+    nav{
+        top: 0px;
+        width: 100vw;
+        height: 50px;
+        padding: 20px;
+        border-radius: 0;
+    }
+}
+@media screen and (max-width: 750px ){
+    #nav-right .connexion{
+        display: none;
+    }
+
+    #nav-right .inscription{
+        display: none;
+    }
+    
     #nav-right .pseudonyme{
         display: none;
     }
+
+    #nav-right .imageProfil{
+        display: none;
+    }
+    
     #nav-right .deconnexion{
         display: none;
     }
 
+    #nav-right .imageUtilisateur{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    
+    #nav-right .imageUtilisateur img{
+        height: 30px;
+    }
 
+
+
+}
+
+@media screen and (max-width: 750px ){
+    #nouveauSujet span{
+        display: none;
+    }
+
+    a#utilisateurs{
+       display: none;
+    }
+}
+
+@media screen and (max-width: 500px ){
+    .searchbar{
+        position: absolute;
+        right: 70px;
+        background-color: var(--clr-background4);
+        border-radius: 5px;
+        width: 30px ;
+        min-width: 30px;
+        max-width: 30px;
+        height: 30px;
+        overflow:visible;
+    }
+    
+    .searchbar input{
+        display: none;
+    }
+
+    .searchbar .fa-magnifying-glass{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: var(--clr-accent1);
+        padding: 7px;
+        border-radius: 5px;
+        color: var(--clr-text1);
+        transition: .3s;
+    }
 }
