@@ -98,6 +98,7 @@ nav .titre{
 }
 
 .searchbar{
+    display: block;
     position: relative;
     background-color: var(--clr-textarea1);
     border-radius: 5px;
@@ -105,7 +106,6 @@ nav .titre{
     min-width: 250px;
     max-width: 350px;
     height: 40px;
-    overflow: hidden;
 }
 
 .searchbar input{
@@ -147,13 +147,14 @@ nav .titre{
     flex-wrap: wrap;
     top: 38px;
     left: 0px;
-    width: 290px;
+    width: 100%;
     height: fit-content;
     max-height: 174px;
     overflow: hidden;
     background-color: var(--clr-background3);
     backdrop-filter: blur(5px);
     border-radius: 0 0 5px 5px;
+    z-index: 999;
 }
 
 .searchbar #suggestions li{
@@ -163,11 +164,13 @@ nav .titre{
     display: none;
     flex-wrap: wrap;
     border-bottom: solid 1px var(--clr-background1);
+    z-index: 999;
 }
 
 .searchbar #suggestions .suggestion{
     display: flex;
     flex-wrap: wrap;
+    z-index: 999;
 }
 
 .searchbar #suggestions .suggestion .imageProfil{
@@ -1414,13 +1417,15 @@ footer{
 
 @media screen and (max-width: 500px ){
     .searchbar{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         position: absolute;
-        right: 70px;
+        left: 0;
         background-color: var(--clr-background4);
+        background-color: rgba(255, 0, 0, 0);
         border-radius: 5px;
-        width: 30px ;
-        min-width: 30px;
-        max-width: 30px;
+        min-width: 100vw;
         height: 30px;
         overflow:visible;
     }
@@ -1428,7 +1433,6 @@ footer{
     .searchbar input{
         position: absolute;
         top: 50px;
-        left: -380px;
         width: 95vw;
         background-color: var(--clr-text1);
         transition: .4s;
@@ -1439,7 +1443,7 @@ footer{
     .searchbar .fa-magnifying-glass{
         position: absolute;
         top: 0px;
-        right: 0px;
+        right: 60px;
         background-color: var(--clr-accent1);
         padding: 7px;
         border-radius: 5px;
@@ -1452,7 +1456,7 @@ footer{
         display: none;
         flex-wrap: wrap;
         top: 85px;
-        left: -380px;
+        left: 10px;
         width: 95vw;
         height: fit-content;
         max-height: 174px;
