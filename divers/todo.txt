@@ -1,1 +1,2 @@
-responsive navbar, listCategories, liste utilisateurs, profil utilisateur
+responsive navbar
+suppr categorie
