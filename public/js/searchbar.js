@@ -4,10 +4,10 @@ function affSuggestions() {
     let ul = document.getElementById('suggestions');
     let li = ul.getElementsByClassName('suggestion');
     let filter = input.value.toUpperCase();
-
+    
     if(input === document.activeElement){
         ul.style.display = "flex";
-  
+        
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByTagName("a")[0];
             let txtValue = a.textContent || a.innerText;

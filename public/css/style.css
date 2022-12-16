@@ -109,6 +109,7 @@ nav .titre{
 }
 
 .searchbar input{
+    display: block;
     background-color: var(--clr-textarea1);
     width: 250px;    
     padding: 9px;
@@ -270,11 +271,11 @@ nav .titre{
     height: 30px;
 }
 
-#nav-right .imageUtilisateur{
+#nav-right #imageUtilisateur{
    display: none;
 }
 
-#nav-right .imageUtilisateur img{
+#nav-right #imageUtilisateur img{
     display: none;
 }
 
@@ -294,100 +295,6 @@ nav .titre{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.searchbarMobile{
-    margin: 0 5px;
-    position: fixed;
-    background-color: var(--clr-text1);
-    border-radius: 5px;
-    width: 100%;
-    height: 30px;
-    overflow: hidden;
-}
-
-.searchbarMobile input{
-    background-color: var(--clr-text1);
-    width: 250px;    
-    padding: 9px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    color: var(--clr-text2);
-}
-
-.searchbarMobile input::placeholder {
-    color: var(--clr-text2);
-    font-weight: 300;
-    text-align: center;
-    line-height: 15px;
- }
-
- .searchbarMobile #suggestionsMobile{
-    position: absolute;
-    display: none;
-    flex-wrap: wrap;
-    top: 38px;
-    left: 0px;
-    width: 290px;
-    height: fit-content;
-    max-height: 174px;
-    overflow: hidden;
-    background-color: var(--clr-background3);
-    backdrop-filter: blur(5px);
-    border-radius: 0 0 5px 5px;
-}
-
-.searchbarMobile #suggestionsMobile li{
-    position: relative;
-    width: 100%;
-    text-align: start;
-    display: none;
-    flex-wrap: wrap;
-    border-bottom: solid 1px var(--clr-background1);
-}
-
-.searchbarMobile #suggestionsMobile .suggestionMobile{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.searchbarMobile #suggestionsMobile .suggestionMobile .imageProfil{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 25px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-right: 5px;
-}
-
-.searchbarMobile #suggestionsMobile .suggestionMobile .imageProfil img{
-    height: 30px;
-}
-
-.searchbarMobile #suggestionsMobile .suggestionMobile .pseudo{
-    width: 100%;
-    color: var(--clr-accent2);
-}
-
-.searchbarMobile #suggestionsMobile .suggestionMobile .role{
-    /* width: 100%; */
-    color: var(--clr-text1);
-    font-size: .8rem;
-    font-weight: 200;
-    font-style: italic;
-}
-
-.searchbarMobile #suggestionsMobile li a{
-    display: flex;
-    padding: 5px;
-    width: 100%;
-}
-
-.searchbarMobile #suggestionsMobile a:hover{
-    background-color: var(--clr-accent1);
-}
-
 #forum{
     width: 100%;
     display: flex;
@@ -403,6 +310,95 @@ nav .titre{
     min-width: 40%;
     max-width: 800px;
     padding: 5px;
+}
+
+#overlay{
+    position: absolute;
+    top: -10px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f0f0f00;
+    backdrop-filter: blur(0px);
+    transition: .4s;
+    z-index: -1;
+}
+
+#menuMobile{
+    z-index: 1000;
+    position: fixed;
+    right: -300px;
+    top: 0;
+    padding: 10px;
+    height: 100vh;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: var(--clr-background4);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transform: translateX(0);
+    transition: .4s;
+}
+
+#menuMobile #btnFermer{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.4rem;
+}
+
+#menuMobile #btnFermer .fa-xmark{
+    color: var(--clr-text2);
+}
+
+#menuMobile .imageProfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+#menuMobile .imageProfil img{
+    height: 30px;
+}
+
+#menuMobile .pseudonyme{
+    position: absolute;
+    top: 13px;
+    left: 45px;
+    color: var(--clr-text2);
+}
+
+#menuMobile .inscription{
+    color: var(--clr-text2);
+    width: 100%;
+    /* text-align: end; */
+}
+
+#menuMobile .connexion{
+    color: var(--clr-text2);
+    width: 100%;
+    /* text-align: end; */
+}
+
+#menuMobile .deconnexion{
+    color: var(--clr-text2);
+    width: 100%;
+    /* text-align: end; */
+}
+
+#menuMobile #utilisateurs{
+    color: var(--clr-text2);
+    position: relative;
+    font-size: 1rem;
+    width: 100%;
+    /* text-align: end; */
 }
 
 /* -----------------------------------HOME------------------------------------ */
@@ -587,7 +583,7 @@ nav .titre{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     background-color: var(--clr-background3);
 }
@@ -750,7 +746,7 @@ nav .titre{
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 800px;
+    width: 100%;
     height: 50px;
     padding:  10px;
     background-color: var(--clr-background3); 
@@ -802,6 +798,8 @@ nav .titre{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    /* min-width: 100%; */
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -810,7 +808,7 @@ nav .titre{
 }
 .categorie{
     position: relative;
-    width: 800px;
+    width: 100%;
     height: fit-content;
     margin-top: 5px;
     padding: 10px;
@@ -1322,7 +1320,40 @@ footer{
         padding: 20px;
         border-radius: 0;
     }
+
+    .profil .infosVisiteur div:nth-child(2){
+        position: relative;
+        top: 0px;
+        right: 0px;
+    }    
 }
+
+@media screen and (max-width: 800px ){
+    .profil  .modifProfil{
+        border-radius: 0;
+    }
+
+    .profil .infosVisiteur{
+        border-radius: 0;
+    }
+}
+@media screen and (max-width: 794px ){
+    #nouvelleCategorie span{
+        display: none;
+    }
+    #nouvelleCategorie #champCategorie{
+        position: absolute;
+        left: 5px;
+        min-width: 80%;
+        margin-left: 5px;
+    }
+    #nouvelleCategorie #btnAjouter{
+        position: absolute;
+        right: 5px;
+        min-width: 110px;
+    }
+}
+
 @media screen and (max-width: 750px ){
     #nav-right .connexion{
         display: none;
@@ -1344,7 +1375,7 @@ footer{
         display: none;
     }
 
-    #nav-right .imageUtilisateur{
+    #nav-right #imageUtilisateur{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1356,21 +1387,28 @@ footer{
         margin-right: 5px;
     }
     
-    #nav-right .imageUtilisateur img{
+    #nav-right #imageUtilisateur img{
         height: 30px;
     }
 
-
-
-}
-
-@media screen and (max-width: 750px ){
     #nouveauSujet span{
         display: none;
     }
-
-    a#utilisateurs{
+    
+    #nav-right a#utilisateurs{
        display: none;
+    }
+
+    #nouveauSujet #champTitre{
+        position: absolute;
+        left: 5px;
+        min-width: 96%;
+        margin-left: 5px;
+    }
+
+    #nouveauSujet #boutonPlus{
+        position: absolute;
+        right: 5px;
     }
 }
 
@@ -1388,6 +1426,13 @@ footer{
     }
     
     .searchbar input{
+        position: absolute;
+        top: 50px;
+        left: -380px;
+        width: 95vw;
+        background-color: var(--clr-text1);
+        transition: .4s;
+        z-index: -1;
         display: none;
     }
 
@@ -1400,5 +1445,27 @@ footer{
         border-radius: 5px;
         color: var(--clr-text1);
         transition: .3s;
+    }
+
+    .searchbar #suggestions{
+        position: absolute;
+        display: none;
+        flex-wrap: wrap;
+        top: 85px;
+        left: -380px;
+        width: 95vw;
+        height: fit-content;
+        max-height: 174px;
+        overflow: hidden;
+        background-color: var(--clr-background3);
+        backdrop-filter: blur(5px);
+        border-radius: 0 0 5px 5px;
+    }
+
+    .listeVisiteurs .infosVisiteur div:nth-child(2){
+        position: relative;
+        top: 0px;
+        margin-left: 10px;
+        width: fit-content;
     }
 }
