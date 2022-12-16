@@ -5,6 +5,7 @@
 
     final class Categorie extends Entity{
 
+        // attributs
         private $id;
         private $titre;
 
