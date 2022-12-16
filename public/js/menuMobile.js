@@ -32,9 +32,10 @@ btnSearch.addEventListener("click",() => {
 overlay.addEventListener("click", () => {
     if(mediaQuery.matches) {
         searchBar.style.display = "none";
+    }
+    if(menuMobile.style.transform !== "translateX(-300px)"){
         overlay.style.backgroundColor = "#0f0f0f00";
         overlay.style.backdropFilter = "blur(0px)";
         overlay.style.zIndex = "-1";
     }
-
 })
