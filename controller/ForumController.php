@@ -119,9 +119,8 @@
             $sujetManager = new SujetManager();
             $messageManager = new MessageManager();
             $categorieId=(isset($_GET["id"])) ? $_GET["id"] : null;
-            // $sujetId = $sujetManager->findSujetsByCategorie($categorieId)->getId();
-            $messageManager->deleteAllMessageFromSujet($sujetId);
-            $sujetManager->delete($sujetId);    
+            $messageManager->deleteAllMessageFromCategorie($categorieId);
+            $sujetManager->deleteAllSujetFromCategorie($categorieId);    
             $categorieManager->delete($categorieId);
             Session::addFlash('success','categorie supprimé');
             self::redirectTo('forum','listCategories');

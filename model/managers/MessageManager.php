@@ -64,9 +64,21 @@
         }
 
         public function deleteAllMessageFromSujet($id){
-            $sql = "DELETE FROM ".$this->tableName."
+            $sql = "DELETE FROM $this->tableName
                     WHERE sujet_id = :id
                     ";
+
+            return DAO::delete($sql, ['id' => $id]);
+        }
+
+        public function deleteAllMessageFromCategorie($id){
+            $sql = "DELETE $this->tableName
+            FROM $this->tableName
+            INNER JOIN sujet
+            ON message.sujet_id = sujet.id_sujet
+            INNER JOIN categorie
+            ON sujet.categorie_id = categorie.id_categorie
+            WHERE id_categorie = :id";
 
             return DAO::delete($sql, ['id' => $id]);
         }

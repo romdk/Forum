@@ -55,4 +55,12 @@
 
             return DAO::update($sql, ['id' => $id]); 
         }
+
+        public function deleteAllSujetFromCategorie($id){
+            $sql = "DELETE FROM ".$this->tableName."
+                    WHERE categorie_id = :id
+                    ";
+
+            return DAO::delete($sql, ['id' => $id]);
+        }
     }
